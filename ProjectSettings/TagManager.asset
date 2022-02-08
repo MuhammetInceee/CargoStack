@@ -8,6 +8,7 @@ TagManager:
   - Collectable
   - Obstacle
   - Destroyable
+  - Closer
   layers:
   - Default
   - TransparentFX
