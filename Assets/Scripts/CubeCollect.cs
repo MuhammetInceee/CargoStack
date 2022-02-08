@@ -8,7 +8,6 @@ public class CubeCollect : MonoBehaviour
     public static CubeCollect Instance;
     public List<GameObject> Cubes = new List<GameObject>();
     private float delay = 0.25f;
-    public GameObject aa;
 
     
 

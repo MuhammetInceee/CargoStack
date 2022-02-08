@@ -8,11 +8,13 @@ public class CubeMovement : MonoBehaviour
     Vector3 goright;
     Vector3 goleft;
 
-    private void Start()
-    {
-        
-    }
     void Update()
+    {
+        PlayerMovement();
+    }
+
+
+    void PlayerMovement()
     {
         goright = new Vector3(-2f, transform.position.y, transform.position.z);
         goleft = new Vector3(2f, transform.position.y, transform.position.z);
