@@ -7,6 +7,8 @@ public class CubeCollect : MonoBehaviour
 {
     public static CubeCollect Instance;
     public List<GameObject> Cubes = new List<GameObject>();
+    public Transform _boxContainerPrefab;
+    public List<GameObject> _boxContainer;
     private float delay = 0.25f;
 
     
@@ -17,6 +19,14 @@ public class CubeCollect : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < _boxContainerPrefab.transform.childCount; i++)
+        {
+            _boxContainer.Add(_boxContainerPrefab.transform.GetChild(i).gameObject);
         }
     }
     private void Update()
@@ -76,7 +86,7 @@ public class CubeCollect : MonoBehaviour
             int index = i;
             Vector3 pos = Cubes[index].transform.localPosition;
             pos.x = Cubes[0].transform.position.x;
-            Cubes[index].transform.DOLocalMove(pos, 0.70f);
+            Cubes[index].transform.DOLocalMove(pos, 0.3f);
         }
     }
 

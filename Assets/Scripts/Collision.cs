@@ -38,35 +38,35 @@ public class Collision : MonoBehaviour
     {
         for (int i = CubeCollect.Instance.Cubes.Count - 1; i > CubeCollect.Instance.Cubes.IndexOf(other.gameObject); i--)
         {
+            // it have some bug, so we can use begin of the level.
             if (other.gameObject.tag.Equals("Obstacle"))
             {
                 float randomX = Random.Range(-1, 1);
-                float randomZ = Random.Range(1, 3);
+                float randomZ = Random.Range(5, 15);
                 if (gameObject.tag.Equals("Collected"))
                 {
                     GameObject Cubei = CubeCollect.Instance.Cubes[i];
-                    CubeCollect.Instance.Cubes[i].gameObject.tag = "Collectable";
-                    Destroy(CubeCollect.Instance.Cubes[i].GetComponent<Collision>());
-                    Vector3 cube = CubeCollect.Instance.Cubes[i].transform.position;
+                    Cubei.gameObject.tag = "Collectable";
+                    Destroy(Cubei.GetComponent<Collision>());
 
-                    //CubeCollect.Instance.Cubes[i].gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 3, 10), ForceMode.Impulse);
-                    CubeCollect.Instance.Cubes[i].gameObject.transform.DOLocalMove(new Vector3(transform.position.x + randomX, 0, transform.position.z + randomZ), 1f);
+                    Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.position.x + randomX, 0, transform.position.z - randomZ), 1f);
                     Cubei.gameObject.transform.parent = other.transform;
-                    CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(0, 2, 0);
+                    Cubei.transform.localPosition = new Vector3(0, 2, 0);
 
 
 
-                    CubeCollect.Instance.Cubes[i].gameObject.GetComponent<Rigidbody>().useGravity = true;
-                    CubeCollect.Instance.Cubes[i].gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                    Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                    Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
 
 
 
-                    CubeCollect.Instance.Cubes[i].gameObject.GetComponent<Collider>().isTrigger = false;
+                    Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
                     CubeCollect.Instance.Cubes.RemoveAt(i);
 
                 }
             }
+
 
             else if (other.gameObject.tag.Equals("Destroyable"))
             {
@@ -75,7 +75,6 @@ public class Collision : MonoBehaviour
                     Debug.Log("Dude come onnn, I am player. I can't change");
                     return;
                 }
-
                 else
                 {
                     Debug.Log("Dude what the fuck, I was destroy amk");
@@ -84,8 +83,23 @@ public class Collision : MonoBehaviour
                 }
             }
 
+            else if (other.gameObject.tag.Equals("Closer"))
+            {
+                if (i == 0)
+                {
+                    Debug.Log("Dude come onnn, I am player. I can't change");
+                    return;
+                }
+                else
+                {
+                    Debug.Log("Dude hi, we meet new tag again :)");
+                    CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.SetActive(false);
+                    CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(true);
+                }
+            }
         }
     }
+
     private void OnCollisionEnter(UnityEngine.Collision other)
     {
         // Collect and follow the player

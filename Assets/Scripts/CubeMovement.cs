@@ -7,6 +7,8 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] private InputController Inputcontroller;
     Vector3 goright;
     Vector3 goleft;
+    private int zPos = 1;
+    private float speed = 7;
 
     void Update()
     {
@@ -21,13 +23,13 @@ public class CubeMovement : MonoBehaviour
 
 
         //transform.position += Vector3.forward * speed * Time.deltaTime;
-        if (Inputcontroller.zposition == -1)//goleft2
+        if (Inputcontroller.zposition == -zPos)//goleft2
         {
-            transform.position = Vector3.Lerp(transform.position, goleft, 3 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, goleft, speed * Time.deltaTime);
         }
-        else if (Inputcontroller.zposition == 1)//goright-2
+        else if (Inputcontroller.zposition == zPos)//goright-2
         {
-            transform.position = Vector3.Lerp(transform.position, goright, 3 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, goright, speed * Time.deltaTime);
         }
     }
     
