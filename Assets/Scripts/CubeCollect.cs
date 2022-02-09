@@ -57,7 +57,6 @@ public class CubeCollect : MonoBehaviour
 
     private IEnumerator MakeObjectsBigger()
     {
-        Debug.Log("dwadawdaw");
         for (int i = Cubes.Count - 1; i > 0; i--)
         {
             int index = i;
