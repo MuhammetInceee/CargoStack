@@ -99,7 +99,7 @@ public class Collision : MonoBehaviour
                 }
                 else
                 {
-                    
+
 
                     // If Empty Box Come Closer Empty Box Set Active False
                     if (CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.activeInHierarchy)
@@ -112,7 +112,7 @@ public class Collision : MonoBehaviour
                     {
                         CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(false);
                     }
-                    
+
                     // If Packed Box Come Closer Do Nothing
                     else if (CubeCollect.Instance.Cubes[i].transform.GetChild(3).gameObject.activeInHierarchy)
                     {
@@ -121,7 +121,14 @@ public class Collision : MonoBehaviour
 
                     // Box Change to Close Box
                     CubeCollect.Instance.Cubes[i].transform.GetChild(2).gameObject.SetActive(true);
+
                     Debug.Log("Dude hi, I am trapped inside the box");
+                }
+
+                // When object pass through to gates just one time boing effect 
+                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                {
+                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
                 }
             }
 
@@ -148,7 +155,14 @@ public class Collision : MonoBehaviour
                     }
 
                     CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(true);
+
                     Debug.Log("Dudeee, I am Full :)");
+                }
+
+                // When object pass through to gates just one time boing effect 
+                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                {
+                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
                 }
             }
 
@@ -181,11 +195,36 @@ public class Collision : MonoBehaviour
 
                     CubeCollect.Instance.Cubes[i].transform.GetChild(3).gameObject.SetActive(true);
                 }
+
+                // When object pass through to gates just one time boing effect 
+                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                {
+                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
+                }
             }
+
+
 
             else if (other.gameObject.tag.Equals("Burner"))
             {
                 // This Code Blocks Box Texture Changer
+
+
+                // If Player Collide, Do Nothing
+                if (i == 0)
+                {
+                    return;
+                }
+                else
+                {
+
+                }
+
+                // When object pass through to gates just one time boing effect 
+                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                {
+                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
+                }
             }
         }
     }
