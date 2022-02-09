@@ -9,6 +9,9 @@ TagManager:
   - Obstacle
   - Destroyable
   - Closer
+  - Filler
+  - Packer
+  - Burner
   layers:
   - Default
   - TransparentFX
