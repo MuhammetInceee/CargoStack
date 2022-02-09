@@ -38,6 +38,13 @@ public class Collision : MonoBehaviour
     {
         for (int i = CubeCollect.Instance.Cubes.Count - 1; i > CubeCollect.Instance.Cubes.IndexOf(other.gameObject); i--)
         {
+
+            //GetChild(0) = Empty Box
+            //GetChild(1) = Full Box
+            //GetChild(2) = Close Box
+            //GetChild(3) = Packed Box
+
+
             // it have some bug, so we can use begin of the level.
             if (other.gameObject.tag.Equals("Obstacle"))
             {
@@ -72,7 +79,7 @@ public class Collision : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    Debug.Log("Dude come onnn, I am player. I can't change");
+                    // If Player Collide, Do Nothing
                     return;
                 }
                 else
@@ -87,15 +94,98 @@ public class Collision : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    Debug.Log("Dude come onnn, I am player. I can't change");
+                    // If Player Collide, Do Nothing
                     return;
                 }
                 else
                 {
-                    Debug.Log("Dude hi, we meet new tag again :)");
-                    CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.SetActive(false);
-                    CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(true);
+                    
+
+                    // If Empty Box Come Closer Empty Box Set Active False
+                    if (CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.activeInHierarchy)
+                    {
+                        CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.SetActive(false);
+                    }
+
+                    // If Full Box Come Closer Full Box Set Active False
+                    else if (CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.activeInHierarchy)
+                    {
+                        CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                    
+                    // If Packed Box Come Closer Do Nothing
+                    else if (CubeCollect.Instance.Cubes[i].transform.GetChild(3).gameObject.activeInHierarchy)
+                    {
+                        return;
+                    }
+
+                    // Box Change to Close Box
+                    CubeCollect.Instance.Cubes[i].transform.GetChild(2).gameObject.SetActive(true);
+                    Debug.Log("Dude hi, I am trapped inside the box");
                 }
+            }
+
+            else if (other.gameObject.tag.Equals("Filler"))
+            {
+                // If Player Collide, Do Nothing
+                if (i == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    // If Empty Box Come Closer Empty Box Set Active False
+                    if (CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.activeInHierarchy)
+                    {
+                        CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.SetActive(false);
+                    }
+
+                    // If Packed Box or Close Box Come Closer, Do Nothing
+                    else if (CubeCollect.Instance.Cubes[i].transform.GetChild(2).gameObject.activeInHierarchy || CubeCollect.Instance.Cubes[i].transform.GetChild(3).gameObject.activeInHierarchy)
+                    {
+                        Debug.Log("Dude you are close or packed, how can i fill? Are you serious amk");
+                        return;
+                    }
+
+                    CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(true);
+                    Debug.Log("Dudeee, I am Full :)");
+                }
+            }
+
+            else if (other.gameObject.tag.Equals("Packer"))
+            {
+                // If Player Collide, Do Nothing
+                if (i == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    // If Empty Box Come Closer Empty Box Set Active False
+                    if (CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.activeInHierarchy)
+                    {
+                        CubeCollect.Instance.Cubes[i].transform.GetChild(0).gameObject.SetActive(false);
+                    }
+
+                    // If Full Box Come Closer Full Box Set Active False
+                    else if (CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.activeInHierarchy)
+                    {
+                        CubeCollect.Instance.Cubes[i].transform.GetChild(1).gameObject.SetActive(false);
+                    }
+
+                    // If Close Box Come Closer Close Box Set Active False
+                    else if (CubeCollect.Instance.Cubes[i].transform.GetChild(2).gameObject.activeInHierarchy)
+                    {
+                        CubeCollect.Instance.Cubes[i].transform.GetChild(2).gameObject.SetActive(false);
+                    }
+
+                    CubeCollect.Instance.Cubes[i].transform.GetChild(3).gameObject.SetActive(true);
+                }
+            }
+
+            else if (other.gameObject.tag.Equals("Burner"))
+            {
+                // This Code Blocks Box Texture Changer
             }
         }
     }
