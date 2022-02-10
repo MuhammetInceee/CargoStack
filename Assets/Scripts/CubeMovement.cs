@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class CubeMovement : MonoBehaviour
 {
-    [SerializeField] private InputController Inputcontroller;
-    Vector3 goright;
-    Vector3 goleft;
-    private int zPos = 1;
-    private float speed = 7;
+
+    [SerializeField] private float _playerSpeed;
+    private float _playerborder = 2.23f;
 
     void Update()
     {
-        PlayerMovement();
+        transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
+        PlayerGetBorder();
     }
 
-
-    void PlayerMovement()
+    void PlayerGetBorder()
     {
-        goright = new Vector3(-2f, transform.position.y, transform.position.z);
-        goleft = new Vector3(2f, transform.position.y, transform.position.z);
+        if (transform.position.x < -_playerborder)
+            transform.position = new Vector3(-_playerborder, transform.position.y, transform.position.z);
 
-
-        //transform.position += Vector3.forward * speed * Time.deltaTime;
-        if (Inputcontroller.zposition == -zPos)//goleft2
-        {
-            transform.position = Vector3.Lerp(transform.position, goleft, speed * Time.deltaTime);
-        }
-        else if (Inputcontroller.zposition == zPos)//goright-2
-        {
-            transform.position = Vector3.Lerp(transform.position, goright, speed * Time.deltaTime);
-        }
+        if(transform.position.x > _playerborder)
+            transform.position = new Vector3(_playerborder, transform.position.y, transform.position.z);
     }
-    
-    
+
+
 }

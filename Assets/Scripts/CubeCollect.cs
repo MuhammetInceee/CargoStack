@@ -10,6 +10,7 @@ public class CubeCollect : MonoBehaviour
     public Transform _boxContainerPrefab;
     public List<GameObject> _boxContainer;
     private float delay = 0.25f;
+    [SerializeField] private float _playerSpeed;
 
     
 
@@ -31,15 +32,16 @@ public class CubeCollect : MonoBehaviour
     }
     private void Update()
     {
-        if (InputController.instance.zposition!=0)
-        {
+        //if (InputController.Instance.isMoved)
+        //{
             MoveListElements();
-        }
-        else
-        {
+        //}
+        //else
+        //{
             MoveOrigin();
-        }
-        transform.Translate(0f, 0f, 6 * Time.deltaTime);
+        //}
+
+        transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
        
     }
    

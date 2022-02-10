@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public static InputController instance;
-    private FloatingJoystick joystick;
-    public float zposition = 0;
-    private void Start()
+    public static InputController Instance;
+    private Touch _touch;
+    public bool isMoved;
+
+    [SerializeField] private float _horizontalSpeed;
+
+
+    void Awake()
     {
-        joystick = GetComponent<FloatingJoystick>();
-        if (instance == null)
-        {
-            instance = this;
-        }
+        if (Instance != null)
+            Destroy(gameObject);
+        else
+            Instance = this;
+            
     }
-    
-    private void Update()
+    void Update()
     {
-        if (joystick.Horizontal > 0.5f)
+        PlayerMovement();
+
+    }
+
+
+    void PlayerMovement()
+    {
+        if (Input.touchCount > 0)
         {
-            zposition = -1;
-            
+            _touch = Input.GetTouch(0);
 
-
-        }
-        else if (joystick.Horizontal < -0.5f)
-        {
-            zposition = 1;
-            
-
+            if (_touch.phase == TouchPhase.Moved)
+            {
+                transform.position = new Vector3(transform.position.x + _touch.deltaPosition.x * (_horizontalSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+                isMoved = true;
+            }
         }
         else
-        {
-            zposition = 0;
-            
-        }
+            isMoved = false;
     }
 }
