@@ -8,6 +8,8 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] private float _playerSpeed;
     private float _playerborder = 2.23f;
 
+    
+
     void Update()
     {
         transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
