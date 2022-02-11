@@ -12,6 +12,7 @@ TagManager:
   - Filler
   - Packer
   - Burner
+  - Sell
   layers:
   - Default
   - TransparentFX
