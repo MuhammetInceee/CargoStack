@@ -199,12 +199,45 @@ public class Collision : MonoBehaviour
                 else
                 {
 
+                    // If Open Box Collide Burner
+                    if (this.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                    {
+                        SetSteamMaterial(0);
+                    }
+
+                    // If Full Box Collide Burner
+                    else if (this.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+                    {
+                        SetSteamMaterial(1);
+                    }
+
+                    // If Close Box Collide Burner
+                    else if (this.gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
+                    {
+                        SetSteamMaterial(2);
+                    }
+
+                    // If Packed Box Collide Burner
+                    else if (this.gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
+                    {
+                        SetSteamMaterial(3);
+                    }
+
                 }
 
                 // When object pass through to gates just one time boing effect 
                 if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
                 {
                     StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
+                }
+            }
+
+            else if (other.gameObject.tag.Equals("Sell"))
+            {
+                // If Player Collide, Do Nothing
+                if (this.gameObject.name == "Player")
+                {
+                    return;
                 }
             }
         }
@@ -223,6 +256,21 @@ public class Collision : MonoBehaviour
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 other.gameObject.GetComponent<Collider>().isTrigger = false;
             }
+        }
+    }
+
+    void SetSteamMaterial(int whichChild)
+    {
+        this.gameObject.transform.GetChild(whichChild).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
+        for (int i = 0; i < this.gameObject.transform.childCount; i++)
+        {
+            if (this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.name == "Toys" ||
+                this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.name == "Band")
+
+                this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._defaultMaterial;
+
+            else
+                this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
         }
     }
 }
