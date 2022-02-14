@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allCharacter: {fileID: 0}
-  isMoved: 0
 --- !u!114 &427679494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,11 +636,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BoxContainerWithModels (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774699302408250667, guid: df149aaaa6860ee45b1cd8a05e792dbe,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4774699302408250668, guid: df149aaaa6860ee45b1cd8a05e792dbe,
         type: 3}
