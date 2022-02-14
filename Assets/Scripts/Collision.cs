@@ -7,6 +7,7 @@ public class Collision : MonoBehaviour
 {
 
     [SerializeField] private GameObject _allCharacter;
+    [SerializeField] private bool isMoved = false;
 
     private void Update()
     {
@@ -234,11 +235,47 @@ public class Collision : MonoBehaviour
 
             else if (other.gameObject.tag.Equals("Sell"))
             {
+
                 // If Player Collide, Do Nothing
                 if (this.gameObject.name == "Player")
                 {
+                    isMoved = false;
                     return;
                 }
+                else
+                {
+                    int index = CubeCollect.Instance.Cubes.IndexOf(this.gameObject);
+
+
+                    if (CubeCollect.Instance.Cubes.Contains(this.gameObject))
+                    {
+                        Debug.Log("Agam ben ilkim bana biþi olmaz");
+
+                        CubeCollect.Instance.Cubes.Remove(this.gameObject);
+                        Destroy(this.gameObject);
+
+                        foreach (GameObject obj in CubeCollect.Instance.Cubes)
+                        {
+                            if (CubeCollect.Instance.Cubes.Count > index && !isMoved)
+                            {
+                                if (index != -1)
+                                {
+                                    Vector3 NewPosition = CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].transform.localPosition;
+                                    NewPosition.z -= index + 1;
+                                    isMoved = true;
+                                }
+                            }
+
+                        }
+
+
+                    }
+                }
+
+                
+
+
+
             }
         }
     }
