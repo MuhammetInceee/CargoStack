@@ -6,7 +6,7 @@ public class CubeMovement : MonoBehaviour
 {
 
     [SerializeField] private float _playerSpeed;
-    private float _playerborder = 2.23f;
+    private float _playerborder = 4;
 
     
 
