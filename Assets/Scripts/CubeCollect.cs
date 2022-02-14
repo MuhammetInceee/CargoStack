@@ -12,7 +12,7 @@ public class CubeCollect : MonoBehaviour
     private float delay = 0.25f;
     [SerializeField] private float _playerSpeed;
 
-    
+
 
     private void Awake()
     {
@@ -32,19 +32,13 @@ public class CubeCollect : MonoBehaviour
     }
     private void Update()
     {
-        //if (InputController.Instance.isMoved)
-        //{
-            MoveListElements();
-        //}
-        //else
-        //{
-            MoveOrigin();
-        //}
+        MoveListElements();
+        MoveOrigin();
 
         transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
-       
+
     }
-   
+
     public void StackCube(GameObject cube, int index)
     {
         Cubes.Add(cube);
@@ -73,7 +67,7 @@ public class CubeCollect : MonoBehaviour
     {
         for (int i = 1; i < Cubes.Count; i++)
         {
-           
+
             Vector3 pos = Cubes[i].transform.localPosition;
             pos.x = Cubes[i - 1].transform.localPosition.x;
             Cubes[i].transform.DOLocalMove(pos, delay);
