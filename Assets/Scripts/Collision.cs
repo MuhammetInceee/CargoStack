@@ -7,12 +7,13 @@ public class Collision : MonoBehaviour
 {
 
     [SerializeField] private GameObject _allCharacter;
-    [SerializeField] private bool isMoved = false;
-
+    [SerializeField] bool isSelled;
     private void Update()
     {
         if (_allCharacter == null)
             _allCharacter = GameObject.Find("AllCharacters");
+
+        CalculateIndex();
     }
 
 
@@ -28,7 +29,7 @@ public class Collision : MonoBehaviour
 
 
             // it have some bug, so we can use begin of the level.
-            if (other.gameObject.tag.Equals("Obstacle"))
+            if (other.gameObject.CompareTag("Obstacle"))
             {
                 float randomX = Random.Range(-1, 1);
                 float randomZ = Random.Range(5, 15);
@@ -57,7 +58,7 @@ public class Collision : MonoBehaviour
             }
 
 
-            else if (other.gameObject.tag.Equals("Destroyable"))
+            else if (other.gameObject.CompareTag("Destroyable"))
             {
                 if (i == 0)
                 {
@@ -72,7 +73,7 @@ public class Collision : MonoBehaviour
                 }
             }
 
-            else if (other.gameObject.tag.Equals("Closer"))
+            else if (other.gameObject.CompareTag("Closer"))
             {
                 if (this.gameObject.name == "Player")
                 {
@@ -114,7 +115,7 @@ public class Collision : MonoBehaviour
                 }
             }
 
-            else if (other.gameObject.tag.Equals("Filler"))
+            else if (other.gameObject.CompareTag("Filler"))
             {
                 // If Player Collide, Do Nothing
                 if (this.gameObject.name == "Player")
@@ -148,7 +149,7 @@ public class Collision : MonoBehaviour
                 }
             }
 
-            else if (other.gameObject.tag.Equals("Packer"))
+            else if (other.gameObject.CompareTag("Packer"))
             {
                 // If Player Collide, Do Nothing
                 if (this.gameObject.name == "Player")
@@ -187,7 +188,7 @@ public class Collision : MonoBehaviour
 
 
 
-            else if (other.gameObject.tag.Equals("Burner"))
+            else if (other.gameObject.CompareTag("Burner"))
             {
                 // This Code Blocks Box Texture Changer
 
@@ -233,63 +234,46 @@ public class Collision : MonoBehaviour
                 }
             }
 
-            else if (other.gameObject.tag.Equals("Sell"))
+            else if (other.gameObject.CompareTag("Sell"))
             {
 
                 // If Player Collide, Do Nothing
                 if (this.gameObject.name == "Player")
                 {
-                    isMoved = false;
+                    //isSelled = false;
                     return;
                 }
-                else
+
+
+                if (CubeCollect.Instance.Cubes.Contains(gameObject))
                 {
-                    int index = CubeCollect.Instance.Cubes.IndexOf(this.gameObject);
+                    CubeCollect.Instance.Cubes.Remove(gameObject);
+                    Destroy(gameObject);
 
-
-                    if (CubeCollect.Instance.Cubes.Contains(this.gameObject))
-                    {
-                        Debug.Log("Agam ben ilkim bana biþi olmaz");
-
-                        CubeCollect.Instance.Cubes.Remove(this.gameObject);
-                        Destroy(this.gameObject);
-
-                        foreach (GameObject obj in CubeCollect.Instance.Cubes)
-                        {
-                            if (CubeCollect.Instance.Cubes.Count > index && !isMoved)
-                            {
-                                if (index != -1)
-                                {
-                                    Vector3 NewPosition = CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].transform.localPosition;
-                                    NewPosition.z -= index + 1;
-                                    isMoved = true;
-                                }
-                            }
-
-                        }
-
-
-                    }
+                    //for (int k = 1; k < CubeCollect.Instance.Cubes.Count; k++)
+                    //{
+                    //    var index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[k].gameObject);
+                    //    Debug.Log("index : " + (index + 1) + "     " + "name : " + CubeCollect.Instance.Cubes[k].gameObject.name);
+                    //    CubeCollect.Instance.Cubes[k].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[k].transform.localPosition.x, CubeCollect.Instance.Cubes[k].transform.localPosition.y, (_allCharacter.transform.GetChild(0).localPosition.z + (index - 1)));
+                        
+                    //}
+                    //isSelled = true;
                 }
-
-                
-
-
 
             }
         }
     }
 
-    private void OnCollisionEnter(UnityEngine.Collision other)
+    private void OnTriggerEnter(UnityEngine.Collider other)
     {
+
         // Collect and follow the player
-        if (other.gameObject.tag.Equals("Collectable"))
+        if (other.gameObject.CompareTag("Collectable"))
         {
             if (!CubeCollect.Instance.Cubes.Contains(other.gameObject))
             {
                 other.gameObject.tag = "Collected";
                 CubeCollect.Instance.StackCube(other.gameObject, CubeCollect.Instance.Cubes.Count - 1);
-                other.gameObject.AddComponent<Collision>();
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 other.gameObject.GetComponent<Collider>().isTrigger = false;
             }
@@ -309,5 +293,17 @@ public class Collision : MonoBehaviour
             else
                 this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
         }
+    }
+
+    void CalculateIndex()
+    {
+        for (int i = 0; i < CubeCollect.Instance.Cubes.Count; i++)
+        {
+            var index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i].gameObject);
+
+            CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z + index);
+            Debug.Log("z value : " + CubeCollect.Instance.Cubes[i].transform.localPosition.z + "     " + "name : " + CubeCollect.Instance.Cubes[i].gameObject.name);
+        }
+
     }
 }
