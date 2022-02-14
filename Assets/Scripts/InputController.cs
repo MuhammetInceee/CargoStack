@@ -5,7 +5,6 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     public static InputController Instance;
-    private Touch _touch;
     public bool isMoved;
 
     [SerializeField] private float _horizontalSpeed;
@@ -32,7 +31,7 @@ public class InputController : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            _touch = Input.GetTouch(0);
+            Touch _touch = Input.GetTouch(0);
 
             if (_touch.phase == TouchPhase.Moved)
             {
