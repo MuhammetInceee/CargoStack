@@ -13,6 +13,8 @@ TagManager:
   - Packer
   - Burner
   - Sell
+  - Down_Collider
+  - Yok_Edici
   layers:
   - Default
   - TransparentFX

@@ -30,15 +30,21 @@ public class Collision : MonoBehaviour
             // it have some bug, so we can use begin of the level.
             if (other.gameObject.CompareTag("Obstacle"))
             {
-                float randomX = Random.Range(-1, 1);
-                float randomZ = Random.Range(5, 15);
-                if (gameObject.tag.Equals("Collected"))
+
+                if (this.gameObject.name == "Player")
+                {
+                    return;
+                }
+
+
+                float randomX = Random.Range(-4, 5);
+                float randomZ = Random.Range(7, 10);
+                if (gameObject.CompareTag("Collected"))
                 {
                     GameObject Cubei = CubeCollect.Instance.Cubes[i];
                     Cubei.gameObject.tag = "Collectable";
-                    Destroy(Cubei.GetComponent<Collision>());
 
-                    Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.position.x + randomX, 0, transform.position.z - randomZ), 1f);
+                    Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
                     Cubei.gameObject.transform.parent = other.transform;
                     Cubei.transform.localPosition = new Vector3(0, 2, 0);
 
@@ -235,7 +241,6 @@ public class Collision : MonoBehaviour
 
             else if (other.gameObject.CompareTag("Sell"))
             {
-
                 // If Player Collide, Do Nothing
                 if (this.gameObject.name == "Player")
                 {
@@ -254,7 +259,7 @@ public class Collision : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(UnityEngine.Collider other)
+    private void OnCollisionEnter(UnityEngine.Collision other)
     {
 
         // Collect and follow the player

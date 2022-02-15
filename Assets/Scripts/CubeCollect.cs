@@ -45,13 +45,13 @@ public class CubeCollect : MonoBehaviour
     {
         Cubes.Add(cube);
         cube.transform.parent = transform;
+        Vector3 NewPosition = Cubes[index].transform.localPosition;
+        NewPosition.z += 1f;
+        cube.transform.localPosition = NewPosition;
 
         StartCoroutine(MakeObjectsBigger());
 
 
-        Vector3 NewPosition = Cubes[index].transform.localPosition;
-        NewPosition.z += 1f;
-        cube.transform.localPosition = NewPosition;
     }
 
     public IEnumerator MakeObjectsBigger()
