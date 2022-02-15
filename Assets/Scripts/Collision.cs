@@ -7,7 +7,6 @@ public class Collision : MonoBehaviour
 {
 
     [SerializeField] private GameObject _allCharacter;
-    [SerializeField] bool isSelled;
     private void Update()
     {
         if (_allCharacter == null)
@@ -240,7 +239,6 @@ public class Collision : MonoBehaviour
                 // If Player Collide, Do Nothing
                 if (this.gameObject.name == "Player")
                 {
-                    //isSelled = false;
                     return;
                 }
 
@@ -250,14 +248,6 @@ public class Collision : MonoBehaviour
                     CubeCollect.Instance.Cubes.Remove(gameObject);
                     Destroy(gameObject);
 
-                    //for (int k = 1; k < CubeCollect.Instance.Cubes.Count; k++)
-                    //{
-                    //    var index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[k].gameObject);
-                    //    Debug.Log("index : " + (index + 1) + "     " + "name : " + CubeCollect.Instance.Cubes[k].gameObject.name);
-                    //    CubeCollect.Instance.Cubes[k].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[k].transform.localPosition.x, CubeCollect.Instance.Cubes[k].transform.localPosition.y, (_allCharacter.transform.GetChild(0).localPosition.z + (index - 1)));
-                        
-                    //}
-                    //isSelled = true;
                 }
 
             }
@@ -302,7 +292,6 @@ public class Collision : MonoBehaviour
             var index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i].gameObject);
 
             CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z + index);
-            Debug.Log("z value : " + CubeCollect.Instance.Cubes[i].transform.localPosition.z + "     " + "name : " + CubeCollect.Instance.Cubes[i].gameObject.name);
         }
 
     }
