@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allCharacter: {fileID: 0}
+  isSelled: 0
 --- !u!1001 &762014662342466274
 PrefabInstance:
   m_ObjectHideFlags: 0
