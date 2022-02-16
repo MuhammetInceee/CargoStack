@@ -10,7 +10,6 @@ public class InputController : MonoBehaviour
     [SerializeField] private float _horizontalSpeed;
 
     public Material _steamMaterial;
-    public Material _defaultMaterial;
 
     void Awake()
     {
