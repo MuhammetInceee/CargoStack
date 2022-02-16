@@ -14,7 +14,7 @@ TagManager:
   - Burner
   - Sell
   - Down_Collider
-  - Yok_Edici
+  - Destroy
   layers:
   - Default
   - TransparentFX
