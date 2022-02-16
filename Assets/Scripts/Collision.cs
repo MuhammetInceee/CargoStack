@@ -267,6 +267,23 @@ public class Collision : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Destroyable"))
+        {
+            if (gameObject.name == "Player")
+            {
+                // If Player Collide, Do Nothing
+                return;
+            }
+
+            if (CubeCollect.Instance.Cubes.Contains(gameObject))
+            {
+                Destroy(gameObject);
+                CubeCollect.Instance.Cubes.Remove(gameObject);
+            }
+        }
+    }
 
     void CalculateIndex()
     {
@@ -308,15 +325,17 @@ public class Collision : MonoBehaviour
             {
                 if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
                 {
-                    float randomX = Random.Range(-3.5f, 4.5f);
-                    float randomZ = Random.Range(15, 20);
+
+                    float randomX = Random.Range(-2.2f, 3.2f);
+                    float randomZ = Random.Range(5, 12);
+
                     if (gameObject.CompareTag("Collected"))
                     {
                         GameObject Cubei = CubeCollect.Instance.Cubes[i];
                         Cubei.gameObject.tag = "Collectable";
 
                         Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
-                        // other yerine modelin içine bir tane yer yap ona ata fonsionun içine attýðýn collider ý kaldýr
+                        // other yerine modelin iÃ§ine bir tane yer yap ona ata fonsionun iÃ§ine attÃ½Ã°Ã½n collider Ã½ kaldÃ½r
                         Cubei.gameObject.transform.parent = other.transform;
                         Cubei.transform.localPosition = new Vector3(0, 2, 0);
 
