@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Collision : MonoBehaviour
 {
     [SerializeField] private GameObject _allCharacter;
+    private float _sellSpeed = 1;
 
     private void Update()
     {
@@ -60,8 +61,6 @@ public class Collision : MonoBehaviour
 
                 }
             }
-
-
 
 
             else if (other.gameObject.CompareTag("Closer"))
@@ -210,8 +209,12 @@ public class Collision : MonoBehaviour
 
                 if (CubeCollect.Instance.Cubes.Contains(gameObject))
                 {
+                    GameObject obj = gameObject;
                     CubeCollect.Instance.Cubes.Remove(gameObject);
                     Destroy(gameObject);
+                    obj.AddComponent<Move_Left_Box>();
+                    
+                    Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y- 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
 
                 }
 
@@ -331,5 +334,4 @@ public class Collision : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

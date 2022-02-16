@@ -917,6 +917,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.19999999, y: 0.01, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1487313725630719596
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299612463764297741, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675609897907454647, guid: 8b71c2dd984e6a345a8c640f0de53734,
+        type: 3}
+      propertyPath: m_Name
+      value: Sell_Gates
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b71c2dd984e6a345a8c640f0de53734, type: 3}
 --- !u!23 &1711813854415299780
 MeshRenderer:
   m_ObjectHideFlags: 0
