@@ -62,20 +62,7 @@ public class Collision : MonoBehaviour
             }
 
 
-            else if (other.gameObject.CompareTag("Destroyable"))
-            {
-                if (i == 0)
-                {
-                    // If Player Collide, Do Nothing
-                    return;
-                }
-                else
-                {
-                    Debug.Log("Dude what the fuck, I was destroy amk");
-                    Destroy(CubeCollect.Instance.Cubes[i]);
-                    CubeCollect.Instance.Cubes.RemoveAt(i);
-                }
-            }
+
 
             else if (other.gameObject.CompareTag("Closer"))
             {
@@ -257,6 +244,23 @@ public class Collision : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Destroyable"))
+        {
+            if (gameObject.name == "Player")
+            {
+                // If Player Collide, Do Nothing
+                return;
+            }
+
+            if (CubeCollect.Instance.Cubes.Contains(gameObject))
+            {
+                Destroy(gameObject);
+                CubeCollect.Instance.Cubes.Remove(gameObject);
+            }
+        }
+    }
 
     void CalculateIndex()
     {
@@ -298,8 +302,8 @@ public class Collision : MonoBehaviour
             {
                 if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
                 {
-                    float randomX = Random.Range(-4, 5);
-                    float randomZ = Random.Range(15, 20);
+                    float randomX = Random.Range(-2.2f, 3.2f);
+                    float randomZ = Random.Range(5, 12);
                     if (gameObject.CompareTag("Collected"))
                     {
                         GameObject Cubei = CubeCollect.Instance.Cubes[i];
@@ -310,7 +314,7 @@ public class Collision : MonoBehaviour
                         Cubei.transform.localPosition = new Vector3(0, 2, 0);
 
                         Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
-                        Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
                         Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
                         CubeCollect.Instance.Cubes.RemoveAt(i);

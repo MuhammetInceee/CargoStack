@@ -8,7 +8,7 @@ public class Toys_Instantiater : MonoBehaviour
     [SerializeField] private GameObject _instantiatePos;
     private void Start()
     {
-        InvokeRepeating("InstantiateToys", 0.3f, 1.5f);
+        InvokeRepeating("InstantiateToys", 0.2f, 1f);
     }
 
     void InstantiateToys()
