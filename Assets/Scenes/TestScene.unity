@@ -1497,6 +1497,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FillerGate
       objectReference: {fileID: 0}
+    - target: {fileID: 7263212150734539799, guid: 1e0d7dcbf198c6a4f8469a79a6c623f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8036616723738465965, guid: 1e0d7dcbf198c6a4f8469a79a6c623f8,
         type: 3}
       propertyPath: m_RootOrder

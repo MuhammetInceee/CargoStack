@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 6878417107998423619}
   m_Layer: 0
   m_Name: Toys_Destroyer
-  m_TagString: Destroy
+  m_TagString: Destroy_Toys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

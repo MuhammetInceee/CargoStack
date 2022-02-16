@@ -14,7 +14,8 @@ TagManager:
   - Burner
   - Sell
   - Down_Collider
-  - Destroy
+  - Destroyer_Hand
+  - Destroy_Toys
   layers:
   - Default
   - TransparentFX

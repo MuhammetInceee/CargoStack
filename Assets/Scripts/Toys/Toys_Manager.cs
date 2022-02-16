@@ -25,7 +25,7 @@ public class Toys_Manager : MonoBehaviour
             isFalling = true;
         }
 
-        if (other.gameObject.CompareTag("Destroy"))
+        if (other.gameObject.CompareTag("Destroy_Toys"))
         {
             Destroy(gameObject);
         }
