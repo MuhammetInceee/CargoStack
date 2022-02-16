@@ -27,11 +27,10 @@ public class Collision : MonoBehaviour
             //GetChild(3) = Packed Box
 
 
-            // it have some bug, so we can use begin of the level.
             if (other.gameObject.CompareTag("Obstacle"))
             {
 
-                if (this.gameObject.name == "Player")
+                if (gameObject.name == "Player")
                 {
                     return;
                 }
@@ -80,35 +79,34 @@ public class Collision : MonoBehaviour
 
             else if (other.gameObject.CompareTag("Closer"))
             {
-                if (this.gameObject.name == "Player")
+                if (gameObject.name == "Player")
                 {
                     // If Player Collide, Do Nothing
                     return;
                 }
                 else
                 {
-                    Debug.Log(this.gameObject.transform.GetChild(0).gameObject.name);
 
                     // If Empty Box Come Closer Empty Box Set Active False
-                    if (this.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                    if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
                     {
-                        this.gameObject.transform.GetChild(0).gameObject.gameObject.SetActive(false);
+                        gameObject.transform.GetChild(0).gameObject.gameObject.SetActive(false);
                     }
 
                     // If Full Box Come Closer Full Box Set Active False
-                    else if (this.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+                    else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
                     {
-                        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(1).gameObject.SetActive(false);
                     }
 
                     // If Packed Box Come Closer Do Nothing
-                    else if (this.gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
+                    else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
                     {
                         return;
                     }
 
                     // Box Change to Close Box
-                    this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                    gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
                     Debug.Log("Dude hi, I am trapped inside the box");
                 }
@@ -123,32 +121,32 @@ public class Collision : MonoBehaviour
             else if (other.gameObject.CompareTag("Filler"))
             {
                 // If Player Collide, Do Nothing
-                if (this.gameObject.name == "Player")
+                if (gameObject.name == "Player")
                 {
                     return;
                 }
                 else
                 {
                     // If Empty Box Come Filler Empty Box Set Active False
-                    if (this.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                    if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
                     {
-                        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(0).gameObject.SetActive(false);
                     }
 
                     // If Packed Box or Close Box Come Filler, Do Nothing
-                    else if (this.gameObject.transform.GetChild(2).gameObject.activeInHierarchy || this.gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
+                    else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy || gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
                     {
                         Debug.Log("Dude you are close or packed, how can i fill? Are you serious amk");
                         return;
                     }
 
-                    this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                    gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
                     Debug.Log("Dudeee, I am Full :)");
                 }
 
                 // When object pass through to gates just one time boing effect 
-                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
                 {
                     StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
                 }
@@ -157,35 +155,35 @@ public class Collision : MonoBehaviour
             else if (other.gameObject.CompareTag("Packer"))
             {
                 // If Player Collide, Do Nothing
-                if (this.gameObject.name == "Player")
+                if (gameObject.name == "Player")
                 {
                     return;
                 }
                 else
                 {
                     // If Empty Box Come Packer Empty Box Set Active False
-                    if (this.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                    if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
                     {
-                        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(0).gameObject.SetActive(false);
                     }
 
                     // If Full Box Come Packer Full Box Set Active False
-                    else if (this.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+                    else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
                     {
-                        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(1).gameObject.SetActive(false);
                     }
 
                     // If Close Box Come Packer Close Box Set Active False
-                    else if (this.gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
+                    else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
                     {
-                        this.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(2).gameObject.SetActive(false);
                     }
 
-                    this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+                    gameObject.transform.GetChild(3).gameObject.SetActive(true);
                 }
 
                 // When object pass through to gates just one time boing effect 
-                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
                 {
                     StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
                 }
@@ -195,45 +193,20 @@ public class Collision : MonoBehaviour
 
             else if (other.gameObject.CompareTag("Burner"))
             {
-                // This Code Blocks Box Texture Changer
 
 
                 // If Player Collide, Do Nothing
-                if (this.gameObject.name == "Player")
+                if (gameObject.name == "Player")
                 {
                     return;
                 }
                 else
                 {
-
-                    // If Open Box Collide Burner
-                    if (this.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                    {
-                        SetSteamMaterial(0);
-                    }
-
-                    // If Full Box Collide Burner
-                    else if (this.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
-                    {
-                        SetSteamMaterial(1);
-                    }
-
-                    // If Close Box Collide Burner
-                    else if (this.gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
-                    {
-                        SetSteamMaterial(2);
-                    }
-
-                    // If Packed Box Collide Burner
-                    else if (this.gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
-                    {
-                        SetSteamMaterial(3);
-                    }
-
+                    TextureChanger();
                 }
 
                 // When object pass through to gates just one time boing effect 
-                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
+                if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
                 {
                     StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
                 }
@@ -242,7 +215,7 @@ public class Collision : MonoBehaviour
             else if (other.gameObject.CompareTag("Sell"))
             {
                 // If Player Collide, Do Nothing
-                if (this.gameObject.name == "Player")
+                if (gameObject.name == "Player")
                 {
                     return;
                 }
@@ -275,21 +248,6 @@ public class Collision : MonoBehaviour
         }
     }
 
-    void SetSteamMaterial(int whichChild)
-    {
-        this.gameObject.transform.GetChild(whichChild).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
-        for (int i = 0; i < this.gameObject.transform.childCount; i++)
-        {
-            if (this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.name == "Toys" ||
-                this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.name == "Band")
-
-                this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._defaultMaterial;
-
-            else
-                this.gameObject.transform.GetChild(whichChild).gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
-        }
-    }
-
     void CalculateIndex()
     {
         for (int i = 0; i < CubeCollect.Instance.Cubes.Count; i++)
@@ -299,5 +257,24 @@ public class Collision : MonoBehaviour
             CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z + index);
         }
 
+    }
+
+    void TextureChanger()
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            for (int k = 0; k < gameObject.transform.GetChild(i).childCount; k++)
+            {
+                if(gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band")
+                {
+                    continue;
+                }
+
+                else
+                    gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
+            }
+
+            gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
+        }
     }
 }
