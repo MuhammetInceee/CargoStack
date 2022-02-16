@@ -62,20 +62,7 @@ public class Collision : MonoBehaviour
             }
 
 
-            else if (other.gameObject.CompareTag("Destroyable"))
-            {
-                if (i == 0)
-                {
-                    // If Player Collide, Do Nothing
-                    return;
-                }
-                else
-                {
-                    Debug.Log("Dude what the fuck, I was destroy amk");
-                    Destroy(CubeCollect.Instance.Cubes[i]);
-                    CubeCollect.Instance.Cubes.RemoveAt(i);
-                }
-            }
+
 
             else if (other.gameObject.CompareTag("Closer"))
             {
@@ -239,12 +226,12 @@ public class Collision : MonoBehaviour
                 }
                 Destroyer_Hand(other);
             }
+
         }
     }
 
     private void OnCollisionEnter(UnityEngine.Collision other)
     {
-
         // Collect and follow the player
         if (other.gameObject.CompareTag("Collectable"))
         {
@@ -253,7 +240,27 @@ public class Collision : MonoBehaviour
                 other.gameObject.tag = "Collected";
                 CubeCollect.Instance.StackCube(other.gameObject, CubeCollect.Instance.Cubes.Count - 1);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                other.gameObject.GetComponent<Collider>().isTrigger = false;
+
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Destroyable"))
+        {
+            if (gameObject.name == "Player")
+            {
+                // If Player Collide, Do Nothing
+                return;
+            }
+            else
+            {
+                if (CubeCollect.Instance.Cubes.Contains(gameObject))
+                {
+                    Destroy(gameObject);
+                    CubeCollect.Instance.Cubes.Remove(gameObject);
+
+                }
             }
         }
     }
@@ -298,7 +305,7 @@ public class Collision : MonoBehaviour
             {
                 if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
                 {
-                    float randomX = Random.Range(-4, 5);
+                    float randomX = Random.Range(-3.5f, 4.5f);
                     float randomZ = Random.Range(15, 20);
                     if (gameObject.CompareTag("Collected"))
                     {
@@ -306,11 +313,12 @@ public class Collision : MonoBehaviour
                         Cubei.gameObject.tag = "Collectable";
 
                         Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
+                        // other yerine modelin içine bir tane yer yap ona ata fonsionun içine attýðýn collider ý kaldýr
                         Cubei.gameObject.transform.parent = other.transform;
                         Cubei.transform.localPosition = new Vector3(0, 2, 0);
 
                         Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
-                        Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
                         Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
                         CubeCollect.Instance.Cubes.RemoveAt(i);
