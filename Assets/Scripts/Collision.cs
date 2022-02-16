@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Collision : MonoBehaviour
 {
     [SerializeField] private GameObject _allCharacter;
+    private float _sellSpeed = 1;
 
     private void Update()
     {
@@ -60,8 +61,6 @@ public class Collision : MonoBehaviour
 
                 }
             }
-
-
 
 
             else if (other.gameObject.CompareTag("Closer"))
@@ -210,8 +209,12 @@ public class Collision : MonoBehaviour
 
                 if (CubeCollect.Instance.Cubes.Contains(gameObject))
                 {
+                    GameObject obj = gameObject;
                     CubeCollect.Instance.Cubes.Remove(gameObject);
                     Destroy(gameObject);
+                    obj.AddComponent<Move_Left_Box>();
+                    
+                    Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y- 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
 
                 }
 
@@ -226,12 +229,12 @@ public class Collision : MonoBehaviour
                 }
                 Destroyer_Hand(other);
             }
+
         }
     }
 
     private void OnCollisionEnter(UnityEngine.Collision other)
     {
-
         // Collect and follow the player
         if (other.gameObject.CompareTag("Collectable"))
         {
@@ -240,7 +243,27 @@ public class Collision : MonoBehaviour
                 other.gameObject.tag = "Collected";
                 CubeCollect.Instance.StackCube(other.gameObject, CubeCollect.Instance.Cubes.Count - 1);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                other.gameObject.GetComponent<Collider>().isTrigger = false;
+
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Destroyable"))
+        {
+            if (gameObject.name == "Player")
+            {
+                // If Player Collide, Do Nothing
+                return;
+            }
+            else
+            {
+                if (CubeCollect.Instance.Cubes.Contains(gameObject))
+                {
+                    Destroy(gameObject);
+                    CubeCollect.Instance.Cubes.Remove(gameObject);
+
+                }
             }
         }
     }
@@ -302,14 +325,17 @@ public class Collision : MonoBehaviour
             {
                 if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
                 {
+
                     float randomX = Random.Range(-2.2f, 3.2f);
                     float randomZ = Random.Range(5, 12);
+
                     if (gameObject.CompareTag("Collected"))
                     {
                         GameObject Cubei = CubeCollect.Instance.Cubes[i];
                         Cubei.gameObject.tag = "Collectable";
 
                         Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
+                        // other yerine modelin içine bir tane yer yap ona ata fonsionun içine attýðýn collider ý kaldýr
                         Cubei.gameObject.transform.parent = other.transform;
                         Cubei.transform.localPosition = new Vector3(0, 2, 0);
 
@@ -327,5 +353,4 @@ public class Collision : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
