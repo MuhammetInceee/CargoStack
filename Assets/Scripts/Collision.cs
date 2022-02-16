@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class Collision : MonoBehaviour
 {
-
     [SerializeField] private GameObject _allCharacter;
+
     private void Update()
     {
         if (_allCharacter == null)
@@ -229,6 +229,16 @@ public class Collision : MonoBehaviour
                 }
 
             }
+
+            else if (other.gameObject.CompareTag("Destroyer_Hand"))
+            {
+                // If Player Collide, Do Nothing
+                if (gameObject.name == "Player")
+                {
+                    return;
+                }
+                Destroyer_Hand(other);
+            }
         }
     }
 
@@ -265,7 +275,7 @@ public class Collision : MonoBehaviour
         {
             for (int k = 0; k < gameObject.transform.GetChild(i).childCount; k++)
             {
-                if(gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band")
+                if (gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band")
                 {
                     continue;
                 }
@@ -277,4 +287,41 @@ public class Collision : MonoBehaviour
             gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
         }
     }
+
+    void Destroyer_Hand(Collider other)
+    {
+        if (CubeCollect.Instance.Cubes.Contains(gameObject))
+        {
+            var index = CubeCollect.Instance.Cubes.IndexOf(gameObject);
+
+            for (int i = 0; i < CubeCollect.Instance.Cubes.Count; i++)
+            {
+                if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
+                {
+                    float randomX = Random.Range(-4, 5);
+                    float randomZ = Random.Range(15, 20);
+                    if (gameObject.CompareTag("Collected"))
+                    {
+                        GameObject Cubei = CubeCollect.Instance.Cubes[i];
+                        Cubei.gameObject.tag = "Collectable";
+
+                        Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
+                        Cubei.gameObject.transform.parent = other.transform;
+                        Cubei.transform.localPosition = new Vector3(0, 2, 0);
+
+                        Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                        Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
+                        Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
+                        CubeCollect.Instance.Cubes.RemoveAt(i);
+
+                    }
+                }
+            }
+
+            CubeCollect.Instance.Cubes.Remove(gameObject);
+            Destroy(gameObject);
+        }
+    }
+
 }
