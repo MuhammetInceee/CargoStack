@@ -94,6 +94,9 @@ public class Collision : MonoBehaviour
                     // Box Change to Close Box
                     gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
+                    if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
+                        other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
+
                     Debug.Log("Dude hi, I am trapped inside the box");
                 }
 
@@ -186,10 +189,11 @@ public class Collision : MonoBehaviour
                 {
                     return;
                 }
-                else
-                {
-                    TextureChanger();
-                }
+
+                TextureChanger();
+
+                if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
+                    other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
 
                 // When object pass through to gates just one time boing effect 
                 if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
@@ -213,8 +217,8 @@ public class Collision : MonoBehaviour
                     CubeCollect.Instance.Cubes.Remove(gameObject);
                     Destroy(gameObject);
                     obj.AddComponent<Move_Left_Box>();
-                    
-                    Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y- 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
+
+                    Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y - 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
 
                 }
 
@@ -227,7 +231,11 @@ public class Collision : MonoBehaviour
                 {
                     return;
                 }
+
                 Destroyer_Hand(other);
+
+                if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
+                    other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
             }
 
         }
@@ -264,7 +272,7 @@ public class Collision : MonoBehaviour
                 CubeCollect.Instance.Cubes.Remove(gameObject);
             }
         }
-        
+
         if (other.gameObject.CompareTag("Destroyable"))
 
         {
@@ -273,15 +281,16 @@ public class Collision : MonoBehaviour
                 // If Player Collide, Do Nothing
                 return;
             }
-            else
-            {
-                if (CubeCollect.Instance.Cubes.Contains(gameObject))
-                {
-                    Destroy(gameObject);
-                    CubeCollect.Instance.Cubes.Remove(gameObject);
 
-                }
+            if (CubeCollect.Instance.Cubes.Contains(gameObject))
+            {
+                Destroy(gameObject);
+                CubeCollect.Instance.Cubes.Remove(gameObject);
             }
+
+            if (!other.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+
         }
     }
 

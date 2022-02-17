@@ -31,9 +31,9 @@ Transform:
   m_LocalPosition: {x: -0.982, y: -1.601, z: -2.47}
   m_LocalScale: {x: 2, y: 1.5, z: 1.5}
   m_Children:
+  - {fileID: 332533595255318293}
   - {fileID: 168715679691427824}
   - {fileID: 4217688720619692280}
-  - {fileID: 332533595255318293}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,7 +148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2633653073051679178}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 144, y: 0, z: 0}
 --- !u!33 &4025406101885503212
 MeshFilter:
@@ -229,7 +229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2633653073051679178}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -144, y: 0, z: 0}
 --- !u!33 &5614452955130446669
 MeshFilter:
@@ -292,10 +292,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParcalanmaToz
       objectReference: {fileID: 0}
+    - target: {fileID: 332533595452245766, guid: 133de7b64cfe73e42910273d0d783d12,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 332533595452534360, guid: 133de7b64cfe73e42910273d0d783d12,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 332533595452534360, guid: 133de7b64cfe73e42910273d0d783d12,
         type: 3}
@@ -305,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 332533595452534360, guid: 133de7b64cfe73e42910273d0d783d12,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.665
+      value: 0.498
       objectReference: {fileID: 0}
     - target: {fileID: 332533595452534360, guid: 133de7b64cfe73e42910273d0d783d12,
         type: 3}

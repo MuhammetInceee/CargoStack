@@ -29,8 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.945, y: 0.945, z: 0.945}
   m_Children:
-  - {fileID: 1674800093935985387}
   - {fileID: 6881963869076383417}
+  - {fileID: 1674800093935985387}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -114,7 +114,7 @@ Transform:
   m_LocalScale: {x: 1.8820714, y: 1.6101695, z: 1.3077204}
   m_Children: []
   m_Father: {fileID: 9068357892338273777}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2694445993539170597
 MeshFilter:
@@ -188,17 +188,22 @@ PrefabInstance:
     - target: {fileID: 13027069344692145, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1023555746363192411, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}
       propertyPath: m_Name
       value: Parilti
       objectReference: {fileID: 0}
+    - target: {fileID: 1023555746363192411, guid: 5daedb87803c2e643a5ea159c0c1fd50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6881963869668664733, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6881963869668664733, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}

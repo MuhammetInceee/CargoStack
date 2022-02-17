@@ -29,8 +29,8 @@ Transform:
   m_LocalPosition: {x: -0.69, y: -0.451, z: -0.00014839}
   m_LocalScale: {x: 1.611113, y: 1.611113, z: 1.611113}
   m_Children:
-  - {fileID: 4954676162740567046}
   - {fileID: 2439027359470233120}
+  - {fileID: 4954676162740567046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -181.874, z: 0}
@@ -116,7 +116,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6854069113741602150}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2473132918649863007
 MeshFilter:
@@ -197,10 +197,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Close_Koli
       objectReference: {fileID: 0}
+    - target: {fileID: 6771859355407607239, guid: be6e4de2b36735945808df1958e28eb4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6771859355407918827, guid: be6e4de2b36735945808df1958e28eb4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6771859355407918827, guid: be6e4de2b36735945808df1958e28eb4,
         type: 3}

@@ -1067,6 +1067,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ezilme
       objectReference: {fileID: 0}
+    - target: {fileID: 6771859355407607239, guid: 73f72fb9f5f5ed54baa43df5e84d0561,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6771859355407918827, guid: 73f72fb9f5f5ed54baa43df5e84d0561,
         type: 3}
       propertyPath: m_RootOrder
