@@ -247,7 +247,7 @@ public class Collision : MonoBehaviour
             }
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Destroyable"))
@@ -264,7 +264,9 @@ public class Collision : MonoBehaviour
                 CubeCollect.Instance.Cubes.Remove(gameObject);
             }
         }
-        else if (other.gameObject.CompareTag("Destroyable"))
+        
+        if (other.gameObject.CompareTag("Destroyable"))
+
         {
             if (gameObject.name == "Player")
             {
