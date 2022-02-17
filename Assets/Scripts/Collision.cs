@@ -247,26 +247,7 @@ public class Collision : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Destroyable"))
-        {
-            if (gameObject.name == "Player")
-            {
-                // If Player Collide, Do Nothing
-                return;
-            }
-            else
-            {
-                if (CubeCollect.Instance.Cubes.Contains(gameObject))
-                {
-                    Destroy(gameObject);
-                    CubeCollect.Instance.Cubes.Remove(gameObject);
-
-                }
-            }
-        }
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Destroyable"))
@@ -281,6 +262,23 @@ public class Collision : MonoBehaviour
             {
                 Destroy(gameObject);
                 CubeCollect.Instance.Cubes.Remove(gameObject);
+            }
+        }
+        else if (other.gameObject.CompareTag("Destroyable"))
+        {
+            if (gameObject.name == "Player")
+            {
+                // If Player Collide, Do Nothing
+                return;
+            }
+            else
+            {
+                if (CubeCollect.Instance.Cubes.Contains(gameObject))
+                {
+                    Destroy(gameObject);
+                    CubeCollect.Instance.Cubes.Remove(gameObject);
+
+                }
             }
         }
     }
