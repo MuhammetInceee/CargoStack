@@ -232,10 +232,18 @@ public class Collision : MonoBehaviour
                     return;
                 }
 
-                Destroyer_Hand(other);
+                
 
-                if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
-                    other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
+                if (CubeCollect.Instance.Cubes.Contains(gameObject))
+                {
+                    Destroy(gameObject);
+                    CubeCollect.Instance.Cubes.Remove(gameObject);
+                }
+                //Destroyer_Hand(other);
+
+                if (!other.gameObject.transform.parent.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
+                    other.gameObject.transform.parent.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
+
             }
 
         }

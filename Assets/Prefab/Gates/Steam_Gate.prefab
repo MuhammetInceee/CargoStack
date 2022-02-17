@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13027069344692145, guid: 5daedb87803c2e643a5ea159c0c1fd50,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1023555746363192411, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}
       propertyPath: m_Name
@@ -218,7 +223,7 @@ PrefabInstance:
     - target: {fileID: 6881963869668664733, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.66
+      value: 2.194
       objectReference: {fileID: 0}
     - target: {fileID: 6881963869668664733, guid: 5daedb87803c2e643a5ea159c0c1fd50,
         type: 3}
