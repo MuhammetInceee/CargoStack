@@ -264,8 +264,9 @@ public class Collision : MonoBehaviour
                 CubeCollect.Instance.Cubes.Remove(gameObject);
             }
         }
-
+        
         if (other.gameObject.CompareTag("Destroyable"))
+
         {
             if (gameObject.name == "Player")
             {
