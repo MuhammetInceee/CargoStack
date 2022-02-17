@@ -14,6 +14,7 @@ public class CubeCollect : MonoBehaviour
 
     public List<GameObject> boxes = new List<GameObject>();
 
+
     private void Awake()
     {
         Cubes.Add(gameObject.transform.GetChild(0).gameObject);

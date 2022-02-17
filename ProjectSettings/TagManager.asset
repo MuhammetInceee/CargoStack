@@ -16,6 +16,7 @@ TagManager:
   - Down_Collider
   - Destroyer_Hand
   - Destroy_Toys
+  - Cargo_Checker
   layers:
   - Default
   - TransparentFX

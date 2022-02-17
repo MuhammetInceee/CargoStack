@@ -283,6 +283,16 @@ public class Collision : MonoBehaviour
                 }
             }
         }
+
+        if (other.gameObject.CompareTag("Cargo_Checker"))
+        {
+            if(gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1])
+            {
+                int own_Cubes = CubeCollect.Instance.Cubes.Count;
+
+                
+            }
+        }
     }
 
     void CalculateIndex()
