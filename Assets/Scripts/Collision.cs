@@ -224,6 +224,11 @@ public class Collision : MonoBehaviour
 
             }
 
+            else if (other.gameObject.CompareTag("CargoCar"))
+            {
+                Destroy(gameObject);
+            }
+
             else if (other.gameObject.CompareTag("Destroyer_Hand"))
             {
                 // If Player Collide, Do Nothing
@@ -232,7 +237,7 @@ public class Collision : MonoBehaviour
                     return;
                 }
 
-                
+
 
                 if (CubeCollect.Instance.Cubes.Contains(gameObject))
                 {
@@ -263,10 +268,6 @@ public class Collision : MonoBehaviour
             }
         }
 
-        if (other.gameObject.CompareTag("End"))
-        {
-            Time.timeScale = 0f;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -305,16 +306,6 @@ public class Collision : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
         }
-
-        if (other.gameObject.CompareTag("Cargo_Checker"))
-        {
-            if(gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1])
-            {
-                int own_Cubes = CubeCollect.Instance.Cubes.Count;
-
-                
-            }
-        }
     }
 
     void CalculateIndex()
@@ -323,7 +314,7 @@ public class Collision : MonoBehaviour
         {
             int index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i].gameObject);
 
-            if(index == 0)
+            if (index == 0)
                 CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z);
             else
                 CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z + (index - 0.29f));

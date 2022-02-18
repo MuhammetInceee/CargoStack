@@ -12,7 +12,9 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
+        if(!InputController.Instance.isGameEnd)
+         transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
+
         PlayerGetBorder();
     }
 
