@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eaf8f9d4fc167ab41aa54308c11c2816
+guid: 187d34dc101b5b245b6482962f0956e6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Sell
-    second: {fileID: 2100000, guid: e2baed4de477ea64ba5214fb9bdaa570, type: 2}
+      name: blinn1
+    second: {fileID: 2100000, guid: 1d542702066bd5d4ebd1175594907bf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn2
+    second: {fileID: 2100000, guid: 8e5fa89290b2c894ab5cd2b11ebaaaa1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted___lambert2
+    second: {fileID: 2100000, guid: 469d913d1c73342499d2fff85740be71, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -39,7 +49,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 35
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 35
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
