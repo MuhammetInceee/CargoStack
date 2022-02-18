@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allCharacter: {fileID: 5657187884020355438}
+  goingLeft: 0
 --- !u!114 &5657187883434399272
 MonoBehaviour:
   m_ObjectHideFlags: 0

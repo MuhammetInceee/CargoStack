@@ -11,6 +11,10 @@ public class InputController : MonoBehaviour
 
     public Material _steamMaterial;
 
+    public bool isGameEnd;
+
+    private float _playerborder = 1.5f;
+
     void Awake()
     {
         if (Instance != null)
@@ -21,8 +25,13 @@ public class InputController : MonoBehaviour
     }
     void Update()
     {
-        PlayerMovement();
 
+        if (!isGameEnd)
+        {
+            PlayerMovement();
+            PlayerGetBorder();
+        }
+        
     }
 
 
@@ -40,5 +49,15 @@ public class InputController : MonoBehaviour
         }
         else
             isMoved = false;
+    }
+
+    void PlayerGetBorder()
+    {
+
+        if (transform.position.x < -_playerborder)
+            transform.position = new Vector3(-_playerborder, transform.position.y, transform.position.z);
+
+        if (transform.position.x > _playerborder)
+            transform.position = new Vector3(_playerborder, transform.position.y, transform.position.z);
     }
 }
