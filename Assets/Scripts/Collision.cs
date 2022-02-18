@@ -262,6 +262,11 @@ public class Collision : MonoBehaviour
 
             }
         }
+
+        if (other.gameObject.CompareTag("End"))
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -316,9 +321,13 @@ public class Collision : MonoBehaviour
     {
         for (int i = 0; i < CubeCollect.Instance.Cubes.Count; i++)
         {
-            var index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i].gameObject);
+            int index = CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i].gameObject);
 
-            CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z + index);
+            if(index == 0)
+                CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z);
+            else
+                CubeCollect.Instance.Cubes[i].transform.localPosition = new Vector3(CubeCollect.Instance.Cubes[i].transform.localPosition.x, CubeCollect.Instance.Cubes[i].transform.localPosition.y, _allCharacter.transform.GetChild(0).localPosition.z + (index - 0.35f));
+
         }
 
     }

@@ -17,6 +17,7 @@ TagManager:
   - Destroyer_Hand
   - Destroy_Toys
   - Cargo_Checker
+  - End
   layers:
   - Default
   - TransparentFX

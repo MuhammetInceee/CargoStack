@@ -71,7 +71,6 @@ public class CubeCollect : MonoBehaviour
     {
         for (int i = 1; i < Cubes.Count; i++)
         {
-
             Vector3 pos = Cubes[i].transform.localPosition;
             pos.x = Cubes[i - 1].transform.localPosition.x;
             Cubes[i].transform.DOLocalMove(pos, delay);
@@ -83,9 +82,14 @@ public class CubeCollect : MonoBehaviour
         for (int i = 1; i < Cubes.Count; i++)
         {
             int index = i;
+
             Vector3 pos = Cubes[index].transform.localPosition;
             pos.x = Cubes[0].transform.position.x;
-            Cubes[index].transform.DOLocalMove(pos, 0.3f);
+            if(index == 1)
+                Cubes[index].transform.DOLocalMove(pos, 0);
+            else
+                Cubes[index].transform.DOLocalMove(pos, 0.3f);
+
         }
     }
 
