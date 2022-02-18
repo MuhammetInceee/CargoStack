@@ -33,10 +33,10 @@ public class CubeCollect : MonoBehaviour
     }
     private void Update()
     {
-        if(InputController.Instance.isMoved)
-            MoveListElements();
-        else
-            MoveOrigin();
+
+        MoveListElements();
+
+        MoveOrigin();
 
         transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
 
@@ -82,13 +82,20 @@ public class CubeCollect : MonoBehaviour
         for (int i = 1; i < Cubes.Count; i++)
         {
             int index = i;
-
             Vector3 pos = Cubes[index].transform.localPosition;
             pos.x = Cubes[0].transform.position.x;
-            if(index == 1)
-                Cubes[index].transform.DOLocalMove(pos, 0);
+
+            if (InputController.Instance.isMoved)
+            {
+                if (index == 1)
+                    Cubes[index].transform.DOLocalMove(pos, 0);
+            }
             else
+            {
                 Cubes[index].transform.DOLocalMove(pos, 0.3f);
+            }
+
+
 
         }
     }
