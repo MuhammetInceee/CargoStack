@@ -354,7 +354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allCharacter: {fileID: 5657187884020355438}
-  goingLeft: 0
 --- !u!114 &5657187883434399272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +361,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5657187883434399701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f484c80561c258847b2cc34fdfa74900, type: 3}
   m_Name: 
@@ -383,6 +382,7 @@ MonoBehaviour:
   isMoved: 0
   _horizontalSpeed: 2
   _steamMaterial: {fileID: 2100000, guid: 5b705549c8aab6a43b9d47a71ee211e8, type: 2}
+  isGameEnd: 0
 --- !u!1 &5657187883536194177
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,14 @@ public class Collision : MonoBehaviour
         CalculateIndex();
     }
 
+    private void FixedUpdate()
+    {
+        if (_allCharacter == null)
+            _allCharacter = GameObject.Find("AllCharacters");
+
+        CalculateIndex();
+    }
+
 
     private void OnTriggerExit(Collider other)
     {

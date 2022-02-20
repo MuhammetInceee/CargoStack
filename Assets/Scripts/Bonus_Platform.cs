@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bonus_Platform : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class Bonus_Platform : MonoBehaviour
 
     public GameObject[] _carBoxes;
 
+    public Button _restart;
+
 
     private void Start()
     {
         _carBoxes = GameObject.FindGameObjectsWithTag("CarTransform");
+        _restart.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,6 +67,7 @@ public class Bonus_Platform : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             InputController.Instance.isGameEnd = true;
+           // _restart.gameObject.SetActive(true);
         }
     }
 }
