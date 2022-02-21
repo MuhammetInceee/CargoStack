@@ -3,7 +3,42 @@ guid: 1745886ada1d9a44ba368caca613d6d6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Platform_Mt
+    second: {fileID: 2100000, guid: 3f8ea8901d4559e4a8bb9105482c253e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Text_Mt
+    second: {fileID: 2100000, guid: f5ae45e74b4d644409bf9348daa9455d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: x1
+    second: {fileID: 2100000, guid: bacd8919bcee3114bb5d9fff5565675f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: x2
+    second: {fileID: 2100000, guid: cf0169c7a23acf54baf1507d30901da9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: x3
+    second: {fileID: 2100000, guid: aefa449fe1ea1b041a8cc17d6439da31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: x4
+    second: {fileID: 2100000, guid: a24472ecb0317124cac958825ad6edb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: x5
+    second: {fileID: 2100000, guid: 8d87da8ad4e93154d82c1ab011ca7b9c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -85,7 +120,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.099999994
+    globalScale: 10
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
