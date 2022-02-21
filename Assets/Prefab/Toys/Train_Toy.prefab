@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFalling: 0
+  Toys_Instantiater: {fileID: 9068399622167596183, guid: 1e0d7dcbf198c6a4f8469a79a6c623f8,
+    type: 3}
 --- !u!54 &6546397991404051057
 Rigidbody:
   m_ObjectHideFlags: 0

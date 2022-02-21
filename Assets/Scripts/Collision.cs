@@ -10,9 +10,6 @@ public class Collision : MonoBehaviour
 
     private void Update()
     {
-        if (_allCharacter == null)
-            _allCharacter = GameObject.Find("AllCharacters");
-
         CalculateIndex();
     }
 
@@ -343,10 +340,18 @@ public class Collision : MonoBehaviour
                 }
 
                 else
-                    gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
+                {
+                    if (Sex_Toy_Manager.Instance.isAdd)
+                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.coverMaterial;
+                    else
+                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.steamMaterial;
+                }
             }
 
-            gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = InputController.Instance._steamMaterial;
+            if (Sex_Toy_Manager.Instance.isAdd)
+                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.boxMaterial;
+            else
+                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.steamMaterial;
         }
     }
 

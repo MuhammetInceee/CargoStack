@@ -7,15 +7,20 @@ public class Toys_Instantiater : MonoBehaviour
     [SerializeField] private List<GameObject> _toys = new List<GameObject>();
     [SerializeField] private GameObject _instantiatePos;
 
-    [SerializeField] private bool isForAd = false;
+    public static bool goRight;
+    public bool GoRight;
+
     private void Start()
     {
         InvokeRepeating("InstantiateToys", 0.2f, 1f);
     }
-
+    private void Update()
+    {
+        goRight = GoRight;
+    }
     void InstantiateToys()
     {
-        if (isForAd)
+        if (Sex_Toy_Manager.Instance.isAdd)
         {
             int rT = Random.Range(3, _toys.Count);
 

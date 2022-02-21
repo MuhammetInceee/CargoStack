@@ -6,15 +6,26 @@ public class Toys_Manager : MonoBehaviour
 {
     private float _speed = 1;
     [SerializeField] bool isFalling = false;
-    void Start()
-    {
 
-    }
+
+
 
     void Update()
     {
-        if(!isFalling)
-            transform.Translate(-1 * _speed * Time.deltaTime, 0, 0);
+        if (!isFalling)
+        {
+            if (!Toys_Instantiater.goRight)
+            {
+                transform.Translate(-1 * _speed * Time.deltaTime, 0, 0);
+                Debug.Log("aga sol");
+            }
+            else
+            {
+                transform.Translate(1 * _speed * Time.deltaTime, 0, 0);
+                Debug.Log("aga sag");
+            }
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)

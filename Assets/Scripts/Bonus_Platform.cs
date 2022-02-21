@@ -11,13 +11,14 @@ public class Bonus_Platform : MonoBehaviour
 
     public GameObject[] _carBoxes;
 
-    public Button _restart;
+
+    private int activeBoxCount;
 
 
     private void Start()
     {
         _carBoxes = GameObject.FindGameObjectsWithTag("CarTransform");
-        _restart.gameObject.SetActive(false);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,16 +51,16 @@ public class Bonus_Platform : MonoBehaviour
             {
                 if (CubeCollect.Instance.Cubes.Contains(other.gameObject))
                 {
-
-                    GameObject obj = other.gameObject;
+                    
+                    GameObject obj = new GameObject();
+                    obj = other.gameObject;
                     CubeCollect.Instance.Cubes.Remove(other.gameObject);
                     Destroy(other.gameObject);
                     ActiveBox++;
 
-                    for (int i = 0; i < ActiveBox; i++)
-                    {
-                        Instantiate(obj, _carBoxes[i].transform.position, Quaternion.identity);
-                    }
+                    Instantiate(obj, _carBoxes[activeBoxCount].transform.position, Quaternion.identity);
+                    activeBoxCount++;
+
 
                 }
             }
@@ -67,7 +68,7 @@ public class Bonus_Platform : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             InputController.Instance.isGameEnd = true;
-           // _restart.gameObject.SetActive(true);
+
         }
     }
 }
