@@ -81,7 +81,7 @@ public class Bonus_Platform : MonoBehaviour
 
     IEnumerator finalScene()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         GameManager.Instance._LevelEnded.SetActive(true);
     }
 }

@@ -60,8 +60,8 @@ public class CubeCollect : MonoBehaviour
         {
             int index = i;
             Vector3 scale = new Vector3(1.5f, 1.5f, 1.5f);
-            Cubes[index].transform.DOScale(scale, 0.1f).OnComplete(() =>
-            Cubes[index].transform.DOScale(new Vector3(1f, 1f, 1f), 0.1f));
+            Cubes[index].transform.DOScale(scale, 0.2f).OnComplete(() =>
+            Cubes[index].transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f));
             yield return new WaitForSeconds(0.05f);
 
         }
