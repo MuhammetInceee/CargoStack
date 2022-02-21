@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Button_Container : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+    public void NextLevel()
     {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            AsyncOperation asyn = SceneManager.LoadSceneAsync(Random.Range(2, 5));
+        }
+
+        else if (SceneManager.GetActiveScene().buildIndex < 4)
+        {
+            AsyncOperation asyn = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

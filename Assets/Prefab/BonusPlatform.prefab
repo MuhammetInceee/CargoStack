@@ -3217,6 +3217,7 @@ GameObject:
   - component: {fileID: 4108855190789764913}
   - component: {fileID: 1056742358584146068}
   - component: {fileID: 2976521851025804382}
+  - component: {fileID: 2091474609}
   m_Layer: 0
   m_Name: CargoCar_End
   m_TagString: Untagged
@@ -3300,6 +3301,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &2091474609
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624912447552056715}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5e61dca3a9e267240b674362b59b6fa4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3637781927520105557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7371,9 +7391,10 @@ GameObject:
   - component: {fileID: 3382790696724774713}
   - component: {fileID: 2326427564009676624}
   - component: {fileID: 6061538584240441491}
+  - component: {fileID: 217098928}
   m_Layer: 0
   m_Name: PlatformWhiteEnd
-  m_TagString: Untagged
+  m_TagString: Camera_Changer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7441,6 +7462,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &217098928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8883655743062297704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.8188715, y: -9.41, z: -2.67}
+  m_Center: {x: -0.000012397766, y: 4.48, z: 0.29}
 --- !u!1 &8924617280377641612
 GameObject:
   m_ObjectHideFlags: 0

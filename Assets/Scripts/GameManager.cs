@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         _tapToStart = GameObject.Find("TapToPlay");
         
         _carAnim = GameObject.Find("CargoCar_End").gameObject.GetComponent<Animator>();
+
     }
 
     private void Update()

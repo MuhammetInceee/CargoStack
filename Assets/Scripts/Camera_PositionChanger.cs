@@ -17,7 +17,8 @@ public class Camera_PositionChanger : MonoBehaviour
 
             _cameraPos.DOLocalRotate(rot, 0.5f);
             _cameraPos.DOLocalMove(pos, 0.5f);
-            
+
+            gameObject.GetComponent<InputController>().enabled = false;
         }
     }
 }
