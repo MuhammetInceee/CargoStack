@@ -21,6 +21,7 @@ TagManager:
   - CarTransform
   - DestroyCar
   - CargoCar
+  - Camera_Changer
   layers:
   - Default
   - TransparentFX

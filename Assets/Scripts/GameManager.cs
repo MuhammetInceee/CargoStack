@@ -15,8 +15,12 @@ public class GameManager : MonoBehaviour
     public Material steamMaterial;
     public Material blackMaterial;
 
-    [Header("TapToStart")]
+    [Header("Objects")]
     [SerializeField] private GameObject _tapToStart;
+    public GameObject _LevelEnded;
+
+    [Header("Animators")]
+    public Animator _carAnim;
 
 
     void Awake()
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
         _tapToStart = GameObject.Find("TapToPlay");
+        
+        _carAnim = GameObject.Find("CargoCar_End").gameObject.GetComponent<Animator>();
     }
 
     private void Update()
