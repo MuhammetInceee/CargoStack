@@ -629,7 +629,7 @@ MonoBehaviour:
   - {fileID: 253826297487572867, guid: 0c084af88f13f794cb68ad274d6aaf59, type: 3}
   - {fileID: 5186643536151447966, guid: 355bfc054f6c13e4fabc7d7575c826ed, type: 3}
   _instantiatePos: {fileID: 5470249879429314013}
-  GoRight: 1
+  GoRight: 0
 --- !u!1 &8803787135331594432
 GameObject:
   m_ObjectHideFlags: 0
