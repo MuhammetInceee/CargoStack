@@ -155,7 +155,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -164,7 +164,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.3125
+        value: 0.2161026
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -185,9 +185,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.5764706, b: 1, a: 1}
-      key1: {r: 0, g: 0.5784302, b: 1, a: 0.41568628}
-      key2: {r: 0, g: 0.5784302, b: 1, a: 0.30980393}
+      key0: {r: 1, g: 1, b: 1, a: 0.5882353}
+      key1: {r: 1, g: 1, b: 1, a: 0.003921569}
+      key2: {r: 0, g: 0.5784302, b: 1, a: 0.101960786}
       key3: {r: 0, g: 0, b: 0, a: 0.101960786}
       key4: {r: 0, g: 0, b: 0, a: 0.101960786}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -202,8 +202,8 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 37008
-      atime2: 51272
+      atime1: 65535
+      atime2: 65535
       atime3: 65535
       atime4: 65535
       atime5: 0
@@ -211,7 +211,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 4
+      m_NumAlphaKeys: 2
     numCornerVertices: 90
     numCapVertices: 90
     alignment: 0
@@ -235,7 +235,6 @@ GameObject:
   - component: {fileID: 5657187883434399700}
   - component: {fileID: 5657187883434399279}
   - component: {fileID: 5657187883434399278}
-  - component: {fileID: 5657187883434399272}
   - component: {fileID: 5657187883434399277}
   m_Layer: 0
   m_Name: Player
@@ -290,7 +289,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 8e5fa89290b2c894ab5cd2b11ebaaaa1, type: 2}
   - {fileID: 2100000, guid: 1d542702066bd5d4ebd1175594907bf1, type: 2}
-  - {fileID: -7323140982607915012, guid: 4a402626a8db0ec438579c3b974bcc84, type: 3}
+  - {fileID: 2100000, guid: 4f55d72c258d7124692b319bc1a7641b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -354,19 +353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allCharacter: {fileID: 5657187884020355438}
---- !u!114 &5657187883434399272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5657187883434399701}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f484c80561c258847b2cc34fdfa74900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerSpeed: 0.2
 --- !u!114 &5657187883434399277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoved: 0
   _horizontalSpeed: 2
-  _steamMaterial: {fileID: 2100000, guid: 5b705549c8aab6a43b9d47a71ee211e8, type: 2}
   isGameEnd: 0
 --- !u!1 &5657187883536194177
 GameObject:
@@ -455,7 +440,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -464,7 +449,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.3125
+        value: 0.2161026
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -485,9 +470,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.5764706, b: 1, a: 1}
-      key1: {r: 0, g: 0.5784302, b: 1, a: 0.41568628}
-      key2: {r: 0, g: 0.5784302, b: 1, a: 0.30980393}
+      key0: {r: 1, g: 1, b: 1, a: 0.5882353}
+      key1: {r: 1, g: 1, b: 1, a: 0.003921569}
+      key2: {r: 0, g: 0.5784302, b: 1, a: 0.101960786}
       key3: {r: 0, g: 0, b: 0, a: 0.101960786}
       key4: {r: 0, g: 0, b: 0, a: 0.101960786}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -502,8 +487,8 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 37008
-      atime2: 51272
+      atime1: 65535
+      atime2: 65535
       atime3: 65535
       atime4: 65535
       atime5: 0
@@ -511,7 +496,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 4
+      m_NumAlphaKeys: 2
     numCornerVertices: 90
     numCapVertices: 90
     alignment: 0
