@@ -14,20 +14,10 @@ public class Toys_Manager : MonoBehaviour
     {
         if (!isFalling)
         {
-            if (!Toys_Instantiater.goRight)
-            {
-                transform.Translate(-1 * _speed * Time.deltaTime, 0, 0);
-                Debug.Log("aga sol");
-            }
-            else
-            {
-                transform.Translate(1 * _speed * Time.deltaTime, 0, 0);
-                Debug.Log("aga sag");
-            }
-
+            transform.Translate(-1 * _speed * Time.deltaTime, 0, 0);
         }
-    }
 
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Down_Collider"))

@@ -31,6 +31,7 @@ public class Collision : MonoBehaviour
             //GetChild(1) = Full Box
             //GetChild(2) = Close Box
             //GetChild(3) = Packed Box
+            //GetChild(4) = Full Sex Box
 
 
             if (other.gameObject.CompareTag("Obstacle"))
@@ -90,6 +91,10 @@ public class Collision : MonoBehaviour
                         gameObject.transform.GetChild(1).gameObject.SetActive(false);
                     }
 
+                    // If Full Sex Box Come Closer Full Box Set Active False
+                    else if(gameObject.transform.GetChild(4).gameObject.activeInHierarchy)
+                        gameObject.transform.GetChild(4).gameObject.SetActive(false);
+
                     // If Packed Box Come Closer Do Nothing
                     else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
                     {
@@ -101,8 +106,6 @@ public class Collision : MonoBehaviour
 
                     if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
                         other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
-
-                    Debug.Log("Dude hi, I am trapped inside the box");
                 }
 
                 // When object pass through to gates just one time boing effect 
@@ -134,7 +137,10 @@ public class Collision : MonoBehaviour
                         return;
                     }
 
-                    gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                    if (GameManager.Instance.isAds)
+                        gameObject.transform.GetChild(4).gameObject.SetActive(true);
+                    else
+                        gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
                     Debug.Log("Dudeee, I am Full :)");
                 }
@@ -167,6 +173,12 @@ public class Collision : MonoBehaviour
                         gameObject.transform.GetChild(1).gameObject.SetActive(false);
                     }
 
+                    // If Full Sex Box Come Packer Full Box Set Active False
+                    else if (gameObject.transform.GetChild(4).gameObject.activeInHierarchy)
+                    {
+                        gameObject.transform.GetChild(4).gameObject.SetActive(false);
+                    }
+
                     // If Close Box Come Packer Close Box Set Active False
                     else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
                     {
@@ -174,6 +186,9 @@ public class Collision : MonoBehaviour
                     }
 
                     gameObject.transform.GetChild(3).gameObject.SetActive(true);
+
+                    if(GameManager.Instance.isAds)
+                        gameObject.transform.GetChild(3).transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.blackMaterial;
                 }
 
                 // When object pass through to gates just one time boing effect 
@@ -334,24 +349,24 @@ public class Collision : MonoBehaviour
         {
             for (int k = 0; k < gameObject.transform.GetChild(i).childCount; k++)
             {
-                if (gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band")
+                if (gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Sex_Obj")
                 {
                     continue;
                 }
 
                 else
                 {
-                    if (Sex_Toy_Manager.Instance.isAdd)
-                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.coverMaterial;
+                    if (GameManager.Instance.isAds)
+                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.coverMaterial;
                     else
-                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.steamMaterial;
+                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.steamMaterial;
                 }
             }
 
-            if (Sex_Toy_Manager.Instance.isAdd)
-                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.boxMaterial;
+            if (GameManager.Instance.isAds)
+                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.boxMaterial;
             else
-                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = Sex_Toy_Manager.Instance.steamMaterial;
+                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.steamMaterial;
         }
     }
 

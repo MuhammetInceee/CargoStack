@@ -35,8 +35,8 @@ public class CubeCollect : MonoBehaviour
     {
         MoveListElements();
         MoveOrigin();
-        if(!InputController.Instance.isGameEnd)
-            transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
+
+        transform.Translate(0f, 0f, _playerSpeed * Time.deltaTime);
 
     }
 

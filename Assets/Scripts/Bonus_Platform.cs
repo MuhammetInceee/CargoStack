@@ -67,7 +67,7 @@ public class Bonus_Platform : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            InputController.Instance.isGameEnd = true;
+            other.gameObject.transform.parent.gameObject.GetComponent<CubeCollect>().enabled = false;
 
         }
     }

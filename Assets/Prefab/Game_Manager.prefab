@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3686202485950634938}
   - component: {fileID: 7343423550442818101}
   m_Layer: 0
-  m_Name: Sex_Toy_Manager
+  m_Name: Game_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,3 +47,5 @@ MonoBehaviour:
   boxMaterial: {fileID: 2100000, guid: 923b53beeaaee514a89fa7ecf324aff9, type: 2}
   coverMaterial: {fileID: 2100000, guid: 9de8a4d0c56f6a74b94e227c1b5f0c23, type: 2}
   steamMaterial: {fileID: 2100000, guid: 5b705549c8aab6a43b9d47a71ee211e8, type: 2}
+  _tapToStart: {fileID: 7525581504835403375, guid: 42409fbb35dfaf449accaac7336cbb5e,
+    type: 3}
