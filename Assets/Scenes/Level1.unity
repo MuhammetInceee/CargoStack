@@ -1661,7 +1661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95915f44cbfeae43931e2dffa7ea46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FLURRY_API_KEY: V6YM74F477RZPVFFJNS7
 --- !u!4 &1424778795
 Transform:
   m_ObjectHideFlags: 0
@@ -2433,6 +2432,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7184114764026915017, guid: 3bc1a9823711bc14d974dd9b1c5b18d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184114764148258694, guid: 3bc1a9823711bc14d974dd9b1c5b18d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7184114764558877643, guid: 3bc1a9823711bc14d974dd9b1c5b18d8,
         type: 3}
       propertyPath: m_Name
@@ -2492,6 +2501,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184114764705299325, guid: 3bc1a9823711bc14d974dd9b1c5b18d8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.42562076
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184114764705299325, guid: 3bc1a9823711bc14d974dd9b1c5b18d8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.37135577
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184114764770864110, guid: 3bc1a9823711bc14d974dd9b1c5b18d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bc1a9823711bc14d974dd9b1c5b18d8, type: 3}
