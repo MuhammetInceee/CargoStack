@@ -31,7 +31,6 @@ public class Collision : MonoBehaviour
             //GetChild(1) = Full Box
             //GetChild(2) = Close Box
             //GetChild(3) = Packed Box
-            //GetChild(4) = Full Sex Box
 
 
             if (other.gameObject.CompareTag("Obstacle"))
@@ -71,42 +70,35 @@ public class Collision : MonoBehaviour
 
             else if (other.gameObject.CompareTag("Closer"))
             {
+                // If Player Collide, Do Nothing
                 if (gameObject.name == "Player")
+                    return;
+
+                // If Empty Box Come Closer Empty Box Set Active False
+                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
                 {
-                    // If Player Collide, Do Nothing
+                    gameObject.transform.GetChild(0).gameObject.gameObject.SetActive(false);
+                }
+
+                // If Full Box Come Closer Full Box Set Active False
+                else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+                {
+                    gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                }
+
+
+                // If Packed Box Come Closer Do Nothing
+                else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
+                {
                     return;
                 }
-                else
-                {
 
-                    // If Empty Box Come Closer Empty Box Set Active False
-                    if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(0).gameObject.gameObject.SetActive(false);
-                    }
+                // Box Change to Close Box
+                gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
-                    // If Full Box Come Closer Full Box Set Active False
-                    else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                    }
+                if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
+                    other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
 
-                    // If Full Sex Box Come Closer Full Box Set Active False
-                    else if(gameObject.transform.GetChild(4).gameObject.activeInHierarchy)
-                        gameObject.transform.GetChild(4).gameObject.SetActive(false);
-
-                    // If Packed Box Come Closer Do Nothing
-                    else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
-                    {
-                        return;
-                    }
-
-                    // Box Change to Close Box
-                    gameObject.transform.GetChild(2).gameObject.SetActive(true);
-
-                    if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
-                        other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
-                }
 
                 // When object pass through to gates just one time boing effect 
                 if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
@@ -119,31 +111,20 @@ public class Collision : MonoBehaviour
             {
                 // If Player Collide, Do Nothing
                 if (gameObject.name == "Player")
-                {
                     return;
-                }
-                else
+
+                // If Empty Box Come Filler Empty Box Set Active False
+                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
                 {
-                    // If Empty Box Come Filler Empty Box Set Active False
-                    if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                    }
-
-                    // If Packed Box or Close Box Come Filler, Do Nothing
-                    else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy || gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
-                    {
-                        Debug.Log("Dude you are close or packed, how can i fill? Are you serious amk");
-                        return;
-                    }
-
-                    if (GameManager.Instance.isAds)
-                        gameObject.transform.GetChild(4).gameObject.SetActive(true);
-                    else
-                        gameObject.transform.GetChild(1).gameObject.SetActive(true);
-
-                    Debug.Log("Dudeee, I am Full :)");
+                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 }
+
+                // If Packed Box or Close Box Come Filler, Do Nothing
+                else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy || gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
+                    return;
+
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+
 
                 // When object pass through to gates just one time boing effect 
                 if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
@@ -156,40 +137,30 @@ public class Collision : MonoBehaviour
             {
                 // If Player Collide, Do Nothing
                 if (gameObject.name == "Player")
-                {
                     return;
-                }
-                else
+
+
+                // If Empty Box Come Packer Empty Box Set Active False
+                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
                 {
-                    // If Empty Box Come Packer Empty Box Set Active False
-                    if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                    }
-
-                    // If Full Box Come Packer Full Box Set Active False
-                    else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                    }
-
-                    // If Full Sex Box Come Packer Full Box Set Active False
-                    else if (gameObject.transform.GetChild(4).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(4).gameObject.SetActive(false);
-                    }
-
-                    // If Close Box Come Packer Close Box Set Active False
-                    else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
-                    {
-                        gameObject.transform.GetChild(2).gameObject.SetActive(false);
-                    }
-
-                    gameObject.transform.GetChild(3).gameObject.SetActive(true);
-
-                    if(GameManager.Instance.isAds)
-                        gameObject.transform.GetChild(3).transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.blackMaterial;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 }
+
+                // If Full Box Come Packer Full Box Set Active False
+                else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+                {
+                    gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                }
+
+
+                // If Close Box Come Packer Close Box Set Active False
+                else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
+                {
+                    gameObject.transform.GetChild(2).gameObject.SetActive(false);
+                }
+
+                gameObject.transform.GetChild(3).gameObject.SetActive(true);
+
 
                 // When object pass through to gates just one time boing effect 
                 if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
@@ -203,12 +174,9 @@ public class Collision : MonoBehaviour
             else if (other.gameObject.CompareTag("Burner"))
             {
 
-
                 // If Player Collide, Do Nothing
                 if (gameObject.name == "Player")
-                {
                     return;
-                }
 
                 TextureChanger();
 
@@ -226,9 +194,7 @@ public class Collision : MonoBehaviour
             {
                 // If Player Collide, Do Nothing
                 if (gameObject.name == "Player")
-                {
                     return;
-                }
 
 
                 if (CubeCollect.Instance.Cubes.Contains(gameObject))
@@ -253,9 +219,7 @@ public class Collision : MonoBehaviour
             {
                 // If Player Collide, Do Nothing
                 if (gameObject.name == "Player")
-                {
                     return;
-                }
 
 
 
@@ -294,11 +258,9 @@ public class Collision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Destroyable"))
         {
+            // If Player Collide, Do Nothing
             if (gameObject.name == "Player")
-            {
-                // If Player Collide, Do Nothing
                 return;
-            }
 
             if (CubeCollect.Instance.Cubes.Contains(gameObject))
             {
@@ -308,13 +270,10 @@ public class Collision : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Destroyable"))
-
         {
+            // If Player Collide, Do Nothing
             if (gameObject.name == "Player")
-            {
-                // If Player Collide, Do Nothing
                 return;
-            }
 
             if (CubeCollect.Instance.Cubes.Contains(gameObject))
             {
@@ -356,17 +315,11 @@ public class Collision : MonoBehaviour
 
                 else
                 {
-                    if (GameManager.Instance.isAds)
-                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.coverMaterial;
-                    else
-                        gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.steamMaterial;
+                    gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.steamMaterial;
                 }
             }
 
-            if (GameManager.Instance.isAds)
-                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.boxMaterial;
-            else
-                gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.steamMaterial;
+            gameObject.transform.GetChild(i).gameObject.GetComponent<MeshRenderer>().material = GameManager.Instance.steamMaterial;
         }
     }
 

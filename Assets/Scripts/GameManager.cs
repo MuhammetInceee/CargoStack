@@ -6,14 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("Ad")]
-    public bool isAds = false;
 
     [Header("Materials")]
-    public Material boxMaterial;
-    public Material coverMaterial;
+
     public Material steamMaterial;
-    public Material blackMaterial;
+
 
     [Header("Objects")]
     [SerializeField] private GameObject _tapToStart;

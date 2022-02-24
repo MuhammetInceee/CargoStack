@@ -43,11 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aeb4e53e11e3c142811daf927a70d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAds: 0
-  boxMaterial: {fileID: 2100000, guid: 923b53beeaaee514a89fa7ecf324aff9, type: 2}
-  coverMaterial: {fileID: 2100000, guid: 9de8a4d0c56f6a74b94e227c1b5f0c23, type: 2}
   steamMaterial: {fileID: 2100000, guid: 5b705549c8aab6a43b9d47a71ee211e8, type: 2}
-  blackMaterial: {fileID: 2100000, guid: fd7656e1dc3de294c983602e142b8ea8, type: 2}
   _tapToStart: {fileID: 0}
   _LevelEnded: {fileID: 0}
   _carAnim: {fileID: 0}

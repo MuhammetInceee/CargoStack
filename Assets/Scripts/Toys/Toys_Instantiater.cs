@@ -17,18 +17,8 @@ public class Toys_Instantiater : MonoBehaviour
     }
     void InstantiateToys()
     {
-        if (GameManager.Instance.isAds)
-        {
-            int rT = Random.Range(3, _toys.Count);
+        int rT = Random.Range(0, _toys.Count);
 
-            Instantiate(_toys[rT], _instantiatePos.transform.position, _toys[rT].transform.rotation, gameObject.transform.GetChild(2));
-
-        }
-        else
-        {
-            int rT = Random.Range(0, 3);
-
-            Instantiate(_toys[rT], _instantiatePos.transform.position, _toys[rT].transform.rotation, gameObject.transform.GetChild(2));
-        }
+        Instantiate(_toys[rT], _instantiatePos.transform.position, _toys[rT].transform.rotation, gameObject.transform.GetChild(2));
     }
 }

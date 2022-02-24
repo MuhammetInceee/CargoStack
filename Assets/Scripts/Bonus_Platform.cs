@@ -70,7 +70,6 @@ public class Bonus_Platform : MonoBehaviour
         {
             other.gameObject.transform.parent.gameObject.GetComponent<CubeCollect>().enabled = false;
 
-            Debug.Log(CubeCollect.Instance.Cubes.Count);
             if (CubeCollect.Instance.Cubes.Count == 1)
             {
                 GameManager.Instance._carAnim.SetBool("isEnd", true);
