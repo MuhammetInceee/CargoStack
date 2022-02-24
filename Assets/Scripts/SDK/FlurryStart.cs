@@ -13,9 +13,13 @@ public class FlurryStart : MonoBehaviour
 #else
     private string FLURRY_API_KEY = null;
 #endif
+  
+
 
     void Start()
     {
+
+        DontDestroyOnLoad(gameObject);
         // Note: When enabling Messaging, Flurry Android should be initialized by using AndroidManifest.xml.
         // Initialize Flurry once.
         new Flurry.Builder()
