@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95915f44cbfeae43931e2dffa7ea46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FLURRY_API_KEY: GQBTBWWT6F7MN63CYY5H
+  FLURRY_API_KEY: F3X2D6CM3WRKKXX3JTHV
 --- !u!4 &1424778795
 Transform:
   m_ObjectHideFlags: 0

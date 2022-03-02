@@ -16,9 +16,9 @@ MonoBehaviour:
   clientTokens:
   - 
   appIds:
-  - 502976588088739
+  - 325071269581677
   appLabels:
-  - Box Stack
+  - Cargo Box Stack
   cookie: 1
   logging: 1
   status: 1
