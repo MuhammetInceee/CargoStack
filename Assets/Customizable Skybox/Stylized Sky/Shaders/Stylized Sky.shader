@@ -1,4 +1,4 @@
-﻿Shader "Stylized/Sky"
+Shader "Stylized/Sky"
 {
     Properties
     {

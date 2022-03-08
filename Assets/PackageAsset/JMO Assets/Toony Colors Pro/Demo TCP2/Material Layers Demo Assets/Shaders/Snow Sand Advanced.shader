@@ -1,4 +1,4 @@
-﻿// Toony Colors Pro+Mobile 2
+// Toony Colors Pro+Mobile 2
 // (c) 2014-2021 Jean Moreno
 
 Shader "Toony Colors Pro 2/Examples/Material Layers/Snow + Sand Advanced"

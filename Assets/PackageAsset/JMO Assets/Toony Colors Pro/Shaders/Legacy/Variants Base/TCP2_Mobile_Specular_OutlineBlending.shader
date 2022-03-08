@@ -1,4 +1,4 @@
-﻿
+
 // Toony Colors Pro+Mobile 2
 // (c) 2014-2019 Jean Moreno
 

@@ -1,4 +1,4 @@
-﻿// Toony Colors Pro+Mobile 2
+// Toony Colors Pro+Mobile 2
 // (c) 2014-2021 Jean Moreno
 
 Shader "Hidden/TCP2 Planar Reflection Depth"

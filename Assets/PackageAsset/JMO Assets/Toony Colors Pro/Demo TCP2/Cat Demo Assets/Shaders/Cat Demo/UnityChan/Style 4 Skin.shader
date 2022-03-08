@@ -1,4 +1,4 @@
-﻿// Toony Colors Pro+Mobile 2
+// Toony Colors Pro+Mobile 2
 // (c) 2014-2019 Jean Moreno
 
 Shader "Toony Colors Pro 2/Examples/Cat Demo/UnityChan/Style 4 Skin"

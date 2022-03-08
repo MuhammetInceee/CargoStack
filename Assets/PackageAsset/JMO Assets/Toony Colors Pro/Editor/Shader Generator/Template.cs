@@ -1,4 +1,4 @@
-﻿// Toony Colors Pro 2
+// Toony Colors Pro 2
 // (c) 2014-2021 Jean Moreno
 
 using System;

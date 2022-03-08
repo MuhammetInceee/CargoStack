@@ -6,234 +6,116 @@ using DG.Tweening;
 public class Collision : MonoBehaviour
 {
     [SerializeField] private GameObject _allCharacter;
-    private float _sellSpeed = 1;
 
     private void Update()
     {
         CalculateIndex();
     }
-
     private void FixedUpdate()
     {
         if (_allCharacter == null)
             _allCharacter = GameObject.Find("AllCharacters");
 
-        CalculateIndex();
+        //CalculateIndex();
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        for (int i = CubeCollect.Instance.Cubes.Count - 1; i > CubeCollect.Instance.Cubes.IndexOf(other.gameObject); i--)
+        //GetChild(0) = Empty Box
+        //GetChild(1) = Full Box
+        //GetChild(2) = Close Box
+        //GetChild(3) = Packed Box
+
+        if (other.gameObject.CompareTag("Closer"))
+        {
+            // If Player Collide, Do Nothing
+            if (gameObject.name == "Player")
+                return;
+
+            BoxCloser(0, 2);
+            BoxDoNothing(2, 1);
+            BoxActiver(2);
+            EffectActiver(other);
+            BoingEffect();
+        }
+
+        else if (other.gameObject.CompareTag("Filler"))
+        {
+            // If Player Collide, Do Nothing
+            if (gameObject.name == "Player")
+                return;
+
+            BoxCloser(0, 1);
+            BoxDoNothing(2, 2);
+            BoxActiver(1);
+            BoingEffect();
+        }
+
+        else if (other.gameObject.CompareTag("Packer"))
+        {
+            // If Player Collide, Do Nothing
+            if (gameObject.name == "Player")
+                return;
+
+            BoxCloser(0, 3);
+            BoxActiver(3);
+            BoingEffect();
+
+        }
+
+
+
+        else if (other.gameObject.CompareTag("Burner"))
         {
 
-            //GetChild(0) = Empty Box
-            //GetChild(1) = Full Box
-            //GetChild(2) = Close Box
-            //GetChild(3) = Packed Box
+            // If Player Collide, Do Nothing
+            if (gameObject.name == "Player")
+                return;
+
+            TextureChanger();
+            EffectActiver(other);
+            BoingEffect();
+        }
+
+        else if (other.gameObject.CompareTag("Sell"))
+        {
+            // If Player Collide, Do Nothing
+            if (gameObject.name == "Player")
+                return;
 
 
-            if (other.gameObject.CompareTag("Obstacle"))
+            if (CubeCollect.Instance.Cubes.Contains(gameObject))
             {
+                GameObject obj = gameObject;
+                CubeCollect.Instance.Cubes.Remove(gameObject);
+                Destroy(gameObject);
+                obj.AddComponent<Move_Left_Box>();
 
-                if (gameObject.name == "Player")
-                {
-                    return;
-                }
-
-
-                float randomX = Random.Range(-4, 5);
-                float randomZ = Random.Range(7, 10);
-                if (gameObject.CompareTag("Collected"))
-                {
-                    GameObject Cubei = CubeCollect.Instance.Cubes[i];
-                    Cubei.gameObject.tag = "Collectable";
-
-                    Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
-                    Cubei.gameObject.transform.parent = other.transform;
-                    Cubei.transform.localPosition = new Vector3(0, 2, 0);
-
-
-
-                    Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
-                    Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-
-
-
-
-                    Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
-                    CubeCollect.Instance.Cubes.RemoveAt(i);
-
-                }
-            }
-
-
-            else if (other.gameObject.CompareTag("Closer"))
-            {
-                // If Player Collide, Do Nothing
-                if (gameObject.name == "Player")
-                    return;
-
-                // If Empty Box Come Closer Empty Box Set Active False
-                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                {
-                    gameObject.transform.GetChild(0).gameObject.gameObject.SetActive(false);
-                }
-
-                // If Full Box Come Closer Full Box Set Active False
-                else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
-                {
-                    gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                }
-
-
-                // If Packed Box Come Closer Do Nothing
-                else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
-                {
-                    return;
-                }
-
-                // Box Change to Close Box
-                gameObject.transform.GetChild(2).gameObject.SetActive(true);
-
-                if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
-                    other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
-
-
-                // When object pass through to gates just one time boing effect 
-                if (this.gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
-                {
-                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
-                }
-            }
-
-            else if (other.gameObject.CompareTag("Filler"))
-            {
-                // If Player Collide, Do Nothing
-                if (gameObject.name == "Player")
-                    return;
-
-                // If Empty Box Come Filler Empty Box Set Active False
-                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                {
-                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                }
-
-                // If Packed Box or Close Box Come Filler, Do Nothing
-                else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy || gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
-                    return;
-
-                gameObject.transform.GetChild(1).gameObject.SetActive(true);
-
-
-                // When object pass through to gates just one time boing effect 
-                if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
-                {
-                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
-                }
-            }
-
-            else if (other.gameObject.CompareTag("Packer"))
-            {
-                // If Player Collide, Do Nothing
-                if (gameObject.name == "Player")
-                    return;
-
-
-                // If Empty Box Come Packer Empty Box Set Active False
-                if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
-                {
-                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                }
-
-                // If Full Box Come Packer Full Box Set Active False
-                else if (gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
-                {
-                    gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                }
-
-
-                // If Close Box Come Packer Close Box Set Active False
-                else if (gameObject.transform.GetChild(2).gameObject.activeInHierarchy)
-                {
-                    gameObject.transform.GetChild(2).gameObject.SetActive(false);
-                }
-
-                gameObject.transform.GetChild(3).gameObject.SetActive(true);
-
-
-                // When object pass through to gates just one time boing effect 
-                if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
-                {
-                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
-                }
-            }
-
-
-
-            else if (other.gameObject.CompareTag("Burner"))
-            {
-
-                // If Player Collide, Do Nothing
-                if (gameObject.name == "Player")
-                    return;
-
-                TextureChanger();
-
-                if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
-                    other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
-
-                // When object pass through to gates just one time boing effect 
-                if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
-                {
-                    StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
-                }
-            }
-
-            else if (other.gameObject.CompareTag("Sell"))
-            {
-                // If Player Collide, Do Nothing
-                if (gameObject.name == "Player")
-                    return;
-
-
-                if (CubeCollect.Instance.Cubes.Contains(gameObject))
-                {
-                    GameObject obj = gameObject;
-                    CubeCollect.Instance.Cubes.Remove(gameObject);
-                    Destroy(gameObject);
-                    obj.AddComponent<Move_Left_Box>();
-
-                    Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y - 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
-
-                }
+                Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y - 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
 
             }
 
-            else if (other.gameObject.CompareTag("CargoCar"))
+        }
+
+        else if (other.gameObject.CompareTag("CargoCar"))
+        {
+            Destroy(gameObject);
+        }
+
+        else if (other.gameObject.CompareTag("Destroyer_Hand"))
+        {
+            // If Player Collide, Do Nothing
+            if (gameObject.name == "Player")
+                return;
+
+            if (CubeCollect.Instance.Cubes.Contains(gameObject))
             {
                 Destroy(gameObject);
+                CubeCollect.Instance.Cubes.Remove(gameObject);
             }
 
-            else if (other.gameObject.CompareTag("Destroyer_Hand"))
-            {
-                // If Player Collide, Do Nothing
-                if (gameObject.name == "Player")
-                    return;
-
-
-
-                if (CubeCollect.Instance.Cubes.Contains(gameObject))
-                {
-                    Destroy(gameObject);
-                    CubeCollect.Instance.Cubes.Remove(gameObject);
-                }
-                //Destroyer_Hand(other);
-
-                if (!other.gameObject.transform.parent.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
-                    other.gameObject.transform.parent.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
-
-            }
+            EffectActiver(other);
 
         }
     }
@@ -256,18 +138,6 @@ public class Collision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Destroyable"))
-        {
-            // If Player Collide, Do Nothing
-            if (gameObject.name == "Player")
-                return;
-
-            if (CubeCollect.Instance.Cubes.Contains(gameObject))
-            {
-                Destroy(gameObject);
-                CubeCollect.Instance.Cubes.Remove(gameObject);
-            }
-        }
 
         if (other.gameObject.CompareTag("Destroyable"))
         {
@@ -308,7 +178,7 @@ public class Collision : MonoBehaviour
         {
             for (int k = 0; k < gameObject.transform.GetChild(i).childCount; k++)
             {
-                if (gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Sex_Obj")
+                if (gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Toys" || gameObject.transform.GetChild(i).transform.GetChild(k).gameObject.name == "Band")
                 {
                     continue;
                 }
@@ -323,42 +193,80 @@ public class Collision : MonoBehaviour
         }
     }
 
-    void Destroyer_Hand(Collider other)
+    //void Destroyer_Hand(Collider other)
+    //{
+    //    if (CubeCollect.Instance.Cubes.Contains(gameObject))
+    //    {
+    //        var index = CubeCollect.Instance.Cubes.IndexOf(gameObject);
+
+    //        for (int i = 0; i < CubeCollect.Instance.Cubes.Count; i++)
+    //        {
+    //            if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
+    //            {
+
+    //                float randomX = Random.Range(-2.2f, 3.2f);
+    //                float randomZ = Random.Range(5, 12);
+
+    //                if (gameObject.CompareTag("Collected"))
+    //                {
+    //                    GameObject Cubei = CubeCollect.Instance.Cubes[i];
+    //                    Cubei.gameObject.tag = "Collectable";
+
+    //                    Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
+    //                    // other yerine modelin içine bir tane yer yap ona ata fonsionun içine attýðýn collider ý kaldýr
+    //                    Cubei.gameObject.transform.parent = other.transform;
+    //                    Cubei.transform.localPosition = new Vector3(0, 2, 0);
+
+    //                    Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
+    //                    Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
+    //                    Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
+    //                    CubeCollect.Instance.Cubes.RemoveAt(i);
+
+    //                }
+    //            }
+    //        }
+
+    //        CubeCollect.Instance.Cubes.Remove(gameObject);
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    void EffectActiver(Collider other)
     {
-        if (CubeCollect.Instance.Cubes.Contains(gameObject))
+        if (!other.gameObject.transform.parent.transform.GetChild(0).gameObject.activeInHierarchy)
+            other.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    void BoingEffect()
+    {
+        // When object pass through to gates just one time boing effect 
+        if (gameObject == CubeCollect.Instance.Cubes[CubeCollect.Instance.Cubes.Count - 1].gameObject)
         {
-            var index = CubeCollect.Instance.Cubes.IndexOf(gameObject);
-
-            for (int i = 0; i < CubeCollect.Instance.Cubes.Count; i++)
-            {
-                if (CubeCollect.Instance.Cubes.IndexOf(CubeCollect.Instance.Cubes[i]) > index)
-                {
-
-                    float randomX = Random.Range(-2.2f, 3.2f);
-                    float randomZ = Random.Range(5, 12);
-
-                    if (gameObject.CompareTag("Collected"))
-                    {
-                        GameObject Cubei = CubeCollect.Instance.Cubes[i];
-                        Cubei.gameObject.tag = "Collectable";
-
-                        Cubei.gameObject.transform.DOLocalMove(new Vector3(transform.localPosition.x + randomX, 0, transform.localPosition.z + randomZ), 1f);
-                        // other yerine modelin içine bir tane yer yap ona ata fonsionun içine attýðýn collider ý kaldýr
-                        Cubei.gameObject.transform.parent = other.transform;
-                        Cubei.transform.localPosition = new Vector3(0, 2, 0);
-
-                        Cubei.gameObject.GetComponent<Rigidbody>().useGravity = true;
-                        Cubei.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-
-                        Cubei.gameObject.GetComponent<Collider>().isTrigger = false;
-                        CubeCollect.Instance.Cubes.RemoveAt(i);
-
-                    }
-                }
-            }
-
-            CubeCollect.Instance.Cubes.Remove(gameObject);
-            Destroy(gameObject);
+            StartCoroutine(CubeCollect.Instance.MakeObjectsBigger());
         }
+    }
+
+    void BoxCloser(int box, int howmanytimerun)
+    {
+        for (int i = box; i < box + howmanytimerun; i++)
+        {
+            if (gameObject.transform.GetChild(i).gameObject.activeInHierarchy)
+                gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    void BoxDoNothing(int box, int howmanytimerun)
+    {
+        for (int i = box; i < box + howmanytimerun; i++)
+        {
+            if (gameObject.transform.GetChild(i).gameObject.activeInHierarchy)
+                return;
+        }
+    }
+
+    void BoxActiver(int box)
+    {
+        gameObject.transform.GetChild(box).gameObject.SetActive(true);
     }
 }

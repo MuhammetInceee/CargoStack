@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Collected
   - Collectable
-  - Obstacle
   - Destroyable
   - Closer
   - Filler

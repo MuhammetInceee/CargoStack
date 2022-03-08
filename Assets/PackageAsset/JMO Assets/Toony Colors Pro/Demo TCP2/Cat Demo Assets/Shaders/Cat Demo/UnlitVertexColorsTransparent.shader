@@ -1,4 +1,4 @@
-﻿Shader "Toony Colors Pro 2/Examples/Cat Demo/Unlit Vertex Colors Transparent"
+Shader "Toony Colors Pro 2/Examples/Cat Demo/Unlit Vertex Colors Transparent"
 {
 	Properties
 	{

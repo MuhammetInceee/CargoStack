@@ -1,4 +1,4 @@
-﻿// Source: https://github.com/keijiro/GaussianBlur
+// Source: https://github.com/keijiro/GaussianBlur
 // (c) 2017 Keijiro Takahashi - MIT License
 
 // (c) 2020 Modified by Jean Moreno for "Toony Colors Pro 2"

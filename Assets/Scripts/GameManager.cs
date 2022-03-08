@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+
     private void Update()
     {
         if (_tapToStart.activeInHierarchy)

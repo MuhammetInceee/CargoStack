@@ -1,4 +1,4 @@
-﻿Shader "Hidden/Toony Colors Pro 2/Standard PBS Outline"
+Shader "Hidden/Toony Colors Pro 2/Standard PBS Outline"
 {
 	Properties
 	{

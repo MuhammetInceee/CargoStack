@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoved: 0
-  _horizontalSpeed: 2
+  _horizontalSpeed: 0.5
   isGameEnd: 0
 --- !u!114 &2076238080
 MonoBehaviour:
