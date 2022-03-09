@@ -7,16 +7,15 @@ public class Collision : MonoBehaviour
 {
     [SerializeField] private GameObject _allCharacter;
 
-    private void Update()
-    {
-        CalculateIndex();
-    }
-    private void FixedUpdate()
+    private void Start()
     {
         if (_allCharacter == null)
             _allCharacter = GameObject.Find("AllCharacters");
+    }
 
-        //CalculateIndex();
+    private void Update()
+    {
+        CalculateIndex();
     }
 
 
@@ -47,8 +46,9 @@ public class Collision : MonoBehaviour
                 return;
 
             BoxCloser(0, 1);
+            if (!gameObject.transform.GetChild(2).gameObject.activeInHierarchy && !gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
+                BoxActiver(1);
             BoxDoNothing(2, 2);
-            BoxActiver(1);
             BoingEffect();
         }
 
