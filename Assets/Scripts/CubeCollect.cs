@@ -6,13 +6,15 @@ using DG.Tweening;
 public class CubeCollect : MonoBehaviour
 {
     public static CubeCollect Instance;
+
     public List<GameObject> Cubes = new List<GameObject>();
     public Transform _boxContainerPrefab;
     public List<GameObject> _boxContainer;
-    private float delay = 0.25f;
-    [SerializeField] private float _playerSpeed;
 
-    public List<GameObject> boxes = new List<GameObject>();
+    private float delay = 0.25f;
+
+    [SerializeField]
+    private float _playerSpeed;
 
 
     private void Awake()
@@ -48,9 +50,7 @@ public class CubeCollect : MonoBehaviour
         Vector3 NewPosition = Cubes[index].transform.localPosition;
         NewPosition.z += 1f;
         cube.transform.localPosition = NewPosition;
-
         StartCoroutine(MakeObjectsBigger());
-
 
     }
 

@@ -5,12 +5,23 @@ using DG.Tweening;
 
 public class Collision : MonoBehaviour
 {
-    [SerializeField] private GameObject _allCharacter;
+    [SerializeField]
+    private GameObject _allCharacter;
+
+    [SerializeField]
+    private GameObject SM;
+
+    [SerializeField]
+    private GlobalScoreSettings globalScore;
+
+    private GameScoreManager scoreManager;
 
     private void Start()
     {
-        if (_allCharacter == null)
-            _allCharacter = GameObject.Find("AllCharacters");
+        _allCharacter = GameObject.Find("AllCharacters");
+
+        SM = GameObject.Find("ScoreManager");
+        scoreManager = SM.GetComponent<GameScoreManager>();
     }
 
     private void Update()
@@ -37,6 +48,8 @@ public class Collision : MonoBehaviour
             BoxActiver(2);
             EffectActiver(other);
             BoingEffect();
+
+            scoreManager.Score += scoreManager.GatesValue;
         }
 
         else if (other.gameObject.CompareTag("Filler"))
@@ -50,6 +63,7 @@ public class Collision : MonoBehaviour
                 BoxActiver(1);
             BoxDoNothing(2, 2);
             BoingEffect();
+            scoreManager.Score += scoreManager.GatesValue;
         }
 
         else if (other.gameObject.CompareTag("Packer"))
@@ -61,6 +75,8 @@ public class Collision : MonoBehaviour
             BoxCloser(0, 3);
             BoxActiver(3);
             BoingEffect();
+
+            scoreManager.Score += scoreManager.GatesValue;
 
         }
 
@@ -76,6 +92,8 @@ public class Collision : MonoBehaviour
             TextureChanger();
             EffectActiver(other);
             BoingEffect();
+
+            scoreManager.Score += scoreManager.GatesValue;
         }
 
         else if (other.gameObject.CompareTag("Sell"))
@@ -94,6 +112,7 @@ public class Collision : MonoBehaviour
 
                 Instantiate(obj, new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y - 0.8f, other.gameObject.transform.position.z), Quaternion.identity);
 
+                SellBox(obj);
             }
 
         }
@@ -128,6 +147,7 @@ public class Collision : MonoBehaviour
             if (!CubeCollect.Instance.Cubes.Contains(other.gameObject))
             {
                 other.gameObject.tag = "Collected";
+                scoreManager.Score += scoreManager.FirstBoxValue;
                 CubeCollect.Instance.StackCube(other.gameObject, CubeCollect.Instance.Cubes.Count - 1);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -147,6 +167,7 @@ public class Collision : MonoBehaviour
 
             if (CubeCollect.Instance.Cubes.Contains(gameObject))
             {
+                DestroyBox(gameObject);
                 Destroy(gameObject);
                 CubeCollect.Instance.Cubes.Remove(gameObject);
             }
@@ -268,5 +289,49 @@ public class Collision : MonoBehaviour
     void BoxActiver(int box)
     {
         gameObject.transform.GetChild(box).gameObject.SetActive(true);
+    }
+
+    void SellBox(GameObject obj)
+    {
+        if (obj.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.EmptyBox;
+            globalScore.GLOBALCOIN += scoreManager.EmptyBox;
+        }
+        else if (obj.transform.GetChild(1).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.FillBox;
+            globalScore.GLOBALCOIN += scoreManager.FillBox;
+        }
+        else if (obj.transform.GetChild(2).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.CloseBox;
+            globalScore.GLOBALCOIN += scoreManager.CloseBox;
+        }
+        else if (obj.transform.GetChild(3).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.PackedBox;
+            globalScore.GLOBALCOIN += scoreManager.PackedBox;
+        }
+    }
+
+    void DestroyBox(GameObject obj)
+    {
+        if (obj.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.EmptyBox;
+        }
+        else if (obj.transform.GetChild(1).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.FillBox;
+        }
+        else if (obj.transform.GetChild(2).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.CloseBox;
+        }
+        else if (obj.transform.GetChild(3).gameObject.activeInHierarchy)
+        {
+            scoreManager.Score -= scoreManager.PackedBox;
+        }
     }
 }
