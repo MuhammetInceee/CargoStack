@@ -46,3 +46,7 @@ MonoBehaviour:
   Score: 0
   FirstBoxValue: 10
   GatesValue: 1
+  EmptyBox: 10
+  FillBox: 11
+  CloseBox: 12
+  PackedBox: 13

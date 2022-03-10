@@ -43,7 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aeb4e53e11e3c142811daf927a70d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _score: {fileID: 0}
+  globalScore: {fileID: 11400000, guid: a55ee296268cc654a98560532141e625, type: 2}
   steamMaterial: {fileID: 2100000, guid: 5b705549c8aab6a43b9d47a71ee211e8, type: 2}
-  _tapToStart: {fileID: 0}
-  _LevelEnded: {fileID: 0}
   _carAnim: {fileID: 0}
+  _LevelEnded: {fileID: 0}
+  _tapToStart: {fileID: 0}
+  _playerCoinCanvas: {fileID: 0}
+  coinText: {fileID: 0}
+  finalScreenCoin: {fileID: 0}
+  GlobalCoin: {fileID: 0}

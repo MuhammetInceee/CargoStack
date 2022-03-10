@@ -14,10 +14,21 @@ public class Bonus_Platform : MonoBehaviour
 
     private int activeBoxCount;
 
+    [SerializeField]
+    private GameObject _score;
+
+    [SerializeField]
+    private GlobalScoreSettings globalScore;
+
+    private GameScoreManager scoreManager;
 
     private void Start()
     {
         _carBoxes = GameObject.FindGameObjectsWithTag("CarTransform");
+
+        _score = GameObject.Find("ScoreManager");
+
+        scoreManager = _score.GetComponent<GameScoreManager>();
 
     }
 
@@ -82,5 +93,36 @@ public class Bonus_Platform : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         GameManager.Instance._LevelEnded.SetActive(true);
+        CalculateFinalScore();
+    }
+
+    void CalculateFinalScore()
+    {
+        Debug.Log(scoreManager.Score);
+        if(gameObject.name == "P1")
+        {
+            globalScore.GLOBALCOIN += scoreManager.Score;
+        }
+        else if(gameObject.name == "P2")
+        {
+            scoreManager.Score *= 2;
+            globalScore.GLOBALCOIN += scoreManager.Score;
+        }
+        else if (gameObject.name == "P3")
+        {
+            scoreManager.Score *= 3;
+            globalScore.GLOBALCOIN += scoreManager.Score;
+        }
+        else if (gameObject.name == "P4")
+        {
+            scoreManager.Score *= 4;
+            globalScore.GLOBALCOIN += scoreManager.Score;
+        }
+        else if (gameObject.name == "P5")
+        {
+            scoreManager.Score *= 5;
+            globalScore.GLOBALCOIN += scoreManager.Score;
+        }
+        Debug.Log(scoreManager.Score);
     }
 }

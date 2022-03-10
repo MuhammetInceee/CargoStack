@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e66653316bb2248b0a43c704e5897f, type: 3}
   m_Name: GlobalScoreSettings
   m_EditorClassIdentifier: 
-  GLOBALCOIN: 0
+  GLOBALCOIN: 875

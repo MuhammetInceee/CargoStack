@@ -1,23 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Access")]
+
+    [SerializeField]
+    private GameObject _score;
+    private GameScoreManager _scoreManager;
+
+    [SerializeField] private GlobalScoreSettings globalScore;
+
 
     [Header("Materials")]
-
     public Material steamMaterial;
 
 
-    [Header("Objects")]
-    [SerializeField] private GameObject _tapToStart;
-    public GameObject _LevelEnded;
-
     [Header("Animators")]
     public Animator _carAnim;
+
+    [Header("UI")]
+
+    public GameObject _LevelEnded;
+
+    [SerializeField]
+    private GameObject _tapToStart;
+
+    [SerializeField]
+    private GameObject _playerCoinCanvas;
+
+    [SerializeField]
+    private Text coinText;
+
+    [SerializeField]
+    private Text finalScreenCoin;
+
+    [SerializeField]
+    private Text GlobalCoin;
+
+
 
 
     void Awake()
@@ -31,7 +56,10 @@ public class GameManager : MonoBehaviour
         
         _carAnim = GameObject.Find("CargoCar_End").gameObject.GetComponent<Animator>();
 
+        _score = GameObject.Find("ScoreManager");
+        _scoreManager = _score.GetComponent<GameScoreManager>();
 
+        
     }
 
     private void Start()
@@ -41,6 +69,12 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
+    {
+        GameStart();
+        UI();
+    }
+
+    void GameStart()
     {
         if (_tapToStart.activeInHierarchy)
         {
@@ -57,7 +91,15 @@ public class GameManager : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 _tapToStart.SetActive(false);
+                _playerCoinCanvas.SetActive(true);
             }
         }
+    }
+
+    void UI()
+    {
+        coinText.text = _scoreManager.Score.ToString();
+        finalScreenCoin.text = _scoreManager.Score.ToString();
+        GlobalCoin.text = globalScore.GLOBALCOIN.ToString();
     }
 }

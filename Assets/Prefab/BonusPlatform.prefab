@@ -113,6 +113,8 @@ MonoBehaviour:
   isEnd: 1
   ActiveBox: 0
   _carBoxes: []
+  _scoreManager: {fileID: 0}
+  globalScore: {fileID: 11400000, guid: a55ee296268cc654a98560532141e625, type: 2}
 --- !u!1 &353938516662981380
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +452,8 @@ MonoBehaviour:
   isEnd: 0
   ActiveBox: 0
   _carBoxes: []
+  _scoreManager: {fileID: 0}
+  globalScore: {fileID: 11400000, guid: a55ee296268cc654a98560532141e625, type: 2}
 --- !u!1 &1385306448881703287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,6 +3007,8 @@ MonoBehaviour:
   isEnd: 0
   ActiveBox: 0
   _carBoxes: []
+  _scoreManager: {fileID: 0}
+  globalScore: {fileID: 11400000, guid: a55ee296268cc654a98560532141e625, type: 2}
 --- !u!1 &2995292717427230694
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,6 +3152,8 @@ MonoBehaviour:
   isEnd: 0
   ActiveBox: 0
   _carBoxes: []
+  _scoreManager: {fileID: 0}
+  globalScore: {fileID: 11400000, guid: a55ee296268cc654a98560532141e625, type: 2}
 --- !u!1 &3216865459736130497
 GameObject:
   m_ObjectHideFlags: 0
@@ -6612,6 +6620,8 @@ MonoBehaviour:
   isEnd: 0
   ActiveBox: 0
   _carBoxes: []
+  _scoreManager: {fileID: 0}
+  globalScore: {fileID: 11400000, guid: a55ee296268cc654a98560532141e625, type: 2}
 --- !u!1 &8340007591631543545
 GameObject:
   m_ObjectHideFlags: 0

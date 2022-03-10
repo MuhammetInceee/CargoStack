@@ -42,6 +42,8 @@ public class Collision : MonoBehaviour
             // If Player Collide, Do Nothing
             if (gameObject.name == "Player")
                 return;
+            if (gameObject.transform.GetChild(0).gameObject.activeInHierarchy || gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+                scoreManager.Score += scoreManager.GatesValue;
 
             BoxCloser(0, 2);
             BoxDoNothing(2, 1);
@@ -49,7 +51,7 @@ public class Collision : MonoBehaviour
             EffectActiver(other);
             BoingEffect();
 
-            scoreManager.Score += scoreManager.GatesValue;
+
         }
 
         else if (other.gameObject.CompareTag("Filler"))
@@ -57,13 +59,14 @@ public class Collision : MonoBehaviour
             // If Player Collide, Do Nothing
             if (gameObject.name == "Player")
                 return;
+            if(gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                scoreManager.Score += scoreManager.GatesValue;
 
             BoxCloser(0, 1);
             if (!gameObject.transform.GetChild(2).gameObject.activeInHierarchy && !gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
                 BoxActiver(1);
             BoxDoNothing(2, 2);
             BoingEffect();
-            scoreManager.Score += scoreManager.GatesValue;
         }
 
         else if (other.gameObject.CompareTag("Packer"))
@@ -72,11 +75,12 @@ public class Collision : MonoBehaviour
             if (gameObject.name == "Player")
                 return;
 
+            if(!gameObject.transform.GetChild(3).gameObject.activeInHierarchy)
+                scoreManager.Score += scoreManager.GatesValue;
+
             BoxCloser(0, 3);
             BoxActiver(3);
             BoingEffect();
-
-            scoreManager.Score += scoreManager.GatesValue;
 
         }
 
@@ -147,6 +151,7 @@ public class Collision : MonoBehaviour
             if (!CubeCollect.Instance.Cubes.Contains(other.gameObject))
             {
                 other.gameObject.tag = "Collected";
+                
                 scoreManager.Score += scoreManager.FirstBoxValue;
                 CubeCollect.Instance.StackCube(other.gameObject, CubeCollect.Instance.Cubes.Count - 1);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -334,4 +339,6 @@ public class Collision : MonoBehaviour
             scoreManager.Score -= scoreManager.PackedBox;
         }
     }
+
+
 }
