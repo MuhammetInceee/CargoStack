@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 0
-  FirstBoxValue: 3
+  FirstBoxValue: 10
   GatesValue: 1
   EmptyBox: 10
   FillBox: 11
