@@ -83,7 +83,7 @@ public class Bonus_Platform : MonoBehaviour
 
             if (CubeCollect.Instance.Cubes.Count == 1)
             {
-                GameManager.Instance._carAnim.SetBool("isEnd", true);
+                GameManager.Instance._carAnim.SetBool("happy", true);
                 StartCoroutine(finalScene());
             }
         }
