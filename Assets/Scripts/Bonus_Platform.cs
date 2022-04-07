@@ -71,9 +71,6 @@ public class Bonus_Platform : MonoBehaviour
 
                     Instantiate(obj, _carBoxes[activeBoxCount].transform.position, Quaternion.identity);
                     activeBoxCount++;
-
-
-
                 }
             }
         }
@@ -83,7 +80,7 @@ public class Bonus_Platform : MonoBehaviour
 
             if (CubeCollect.Instance.Cubes.Count == 1)
             {
-                GameManager.Instance._carAnim.SetBool("happy", true);
+                GameManager.Instance._carAnim.SetBool("isEnd", true);
                 StartCoroutine(finalScene());
             }
         }
